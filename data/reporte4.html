@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte SEO - seo-ghost</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  h1 small { font-size: 1rem; color: #666; font-weight: 400; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .num { font-size: 2rem; font-weight: 700; }
+  .card .label { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+  .ok { color: #22c55e; }
+  .warn { color: #f59e0b; }
+  .err { color: #ef4444; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+  th { background: #f8fafc; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fef3c7; color: #b45309; }
+  .badge-error { background: #fee2e2; color: #b91c1c; }
+  .detail { background: #fff; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .detail h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .detail-grid .item { }
+  .detail-grid .item .val { font-size: 1.1rem; font-weight: 600; }
+  .detail-grid .item .lbl { font-size: 0.8rem; color: #666; }
+  .img-list { list-style: none; padding: 0; }
+  .img-list li { padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; word-break: break-all; }
+  .img-list li:last-child { border: none; }
+  .img-list a { color: #2563eb; text-decoration: none; }
+  .img-list a:hover { text-decoration: underline; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 0.35rem 0.75rem; margin: 0.25rem 0; border-radius: 6px; font-size: 0.85rem; }
+  .issue-list .issue-error { background: #fee2e2; color: #b91c1c; }
+  .issue-list .issue-warn { background: #fef3c7; color: #b45309; }
+  .heading-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .heading-list .tag { background: #eef2ff; color: #4338ca; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  .footer { text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+  @media (max-width: 768px) { body { padding: 1rem; } .summary-cards { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Ecuavisa <small>Reporte de Metadata SEO</small></h1>
+  <p class="subtitle">9/7/2026, 7:58:49 p. m.</p>
+
+  <div class="summary-cards">
+    <div class="card"><div class="num ok">4</div><div class="label">URLs procesadas</div></div>
+    <div class="card"><div class="num ok">4</div><div class="label">Exitosas</div></div>
+    <div class="card"><div class="num ok">0</div><div class="label">Con errores</div></div>
+  </div>
+
+  <h2>📊 Resumen General</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>URL</th><th>Status</th><th>Title</th><th>H1</th><th>H2</th><th>H3</th><th>Img</th><th>Sin Alt</th><th>Issues</th>
+    </tr></thead>
+    <tbody>
+
+      <tr>
+        <td>1</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/musica?_cb=1783645053758" target="_blank" title="https://www.ecuavisa.com/entretenimiento/musica?_cb=1783645053758">www.ecuavisa.com/entretenimiento/musica</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Música | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/cine?_cb=1783645074205" target="_blank" title="https://www.ecuavisa.com/entretenimiento/cine?_cb=1783645074205">www.ecuavisa.com/entretenimiento/cine</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Cine | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/television?_cb=1783645092710" target="_blank" title="https://www.ecuavisa.com/entretenimiento/television?_cb=1783645092710">www.ecuavisa.com/entretenimiento/televis</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Televisión | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/gaming?_cb=1783645112098" target="_blank" title="https://www.ecuavisa.com/entretenimiento/gaming?_cb=1783645112098">www.ecuavisa.com/entretenimiento/gaming</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Gaming | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h2>🔍 Resultados Detallados</h2>
+
+  <div class="detail">
+    <h3>1. <a href="https://www.ecuavisa.com/entretenimiento/musica" target="_blank">https://www.ecuavisa.com/entretenimiento/musica</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Música | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/entretenimiento/musica</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Música</span>
+<span class="tag"><strong>H2:</strong> Revés legal para Bad Bunny: Tribunal Supremo de Puerto Ri...</span>
+<span class="tag"><strong>H2:</strong> Holding Out for a Hero: La canción de Bonnie Tyler que in...</span>
+<span class="tag"><strong>H2:</strong> El día que Bob Dylan enfureció a Vargas Llosa: 10 años de...</span>
+<span class="tag"><strong>H2:</strong> U2 estrena Street of Dreams el primer adelanto de su nuev...</span>
+<span class="tag"><strong>H2:</strong> De Total Eclipse of the Heart a Holding Out for a Hero: e...</span>
+<span class="tag"><strong>H2:</strong> Venden la basura de la boda de Taylor Swift y Travis Kelc...</span>
+<span class="tag"><strong>H2:</strong> Bonnie Tyler, la cantante de Total Eclipse of the Heart, ...</span>
+<span class="tag"><strong>H2:</strong> Justin Bieber se suma a Shakira, Madonna y BTS para el sh...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>2. <a href="https://www.ecuavisa.com/entretenimiento/cine" target="_blank">https://www.ecuavisa.com/entretenimiento/cine</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Cine | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/entretenimiento/cine</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Cine</span>
+<span class="tag"><strong>H2:</strong> El actor Matt Damon revela que Lionel Messi es un héroe p...</span>
+<span class="tag"><strong>H2:</strong> Terry Crews quiere recrear la viral escena de ¿Y dónde es...</span>
+<span class="tag"><strong>H2:</strong> Brenda Rivero acusa a Alfonso Obregón, voz de Shrek, de p...</span>
+<span class="tag"><strong>H2:</strong> La película biográfica de Britney Spears suma a una recon...</span>
+<span class="tag"><strong>H2:</strong> Margaret Qualley y Jack Antonoff ponen fin a su matrimoni...</span>
+<span class="tag"><strong>H2:</strong> Vin Diesel confirma el inicio del rodaje de Rápidos y Fur...</span>
+<span class="tag"><strong>H2:</strong> Tilly Norwood, una actriz creada con inteligencia artific...</span>
+<span class="tag"><strong>H2:</strong> El legado expansivo de la saga El Padrino: libros, pelícu...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>3. <a href="https://www.ecuavisa.com/entretenimiento/television" target="_blank">https://www.ecuavisa.com/entretenimiento/television</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Televisión | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/entretenimiento/television</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Televisión</span>
+<span class="tag"><strong>H2:</strong> María Delgado, candidata de Chimborazo, revela el poderos...</span>
+<span class="tag"><strong>H2:</strong> Alejandra Jaramillo ofrece disculpas a México tras celebr...</span>
+<span class="tag"><strong>H2:</strong> &quot;Muchas veces me acosté sin cenar&quot;: la dura confesión de ...</span>
+<span class="tag"><strong>H2:</strong> ¿Tiene 77 años?: Vera Wang sorprende con este look en la ...</span>
+<span class="tag"><strong>H2:</strong> ¿Se le acabó la soltería? La misteriosa foto con la que M...</span>
+<span class="tag"><strong>H2:</strong> Laura Bozzo, Gustavo Adolfo Infante y más famosos mexican...</span>
+<span class="tag"><strong>H2:</strong> ¿Hubo arreglo?: La frase de Bizarrap tras entregar el MVP...</span>
+<span class="tag"><strong>H2:</strong> Ecuavisa estrenará Leyla este julio, una novela turca mar...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>4. <a href="https://www.ecuavisa.com/entretenimiento/gaming" target="_blank">https://www.ecuavisa.com/entretenimiento/gaming</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Gaming | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/entretenimiento/gaming</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Gaming</span>
+<span class="tag"><strong>H2:</strong> Nintendo anuncia el cierre de Mario Kart Tour y descarta ...</span>
+<span class="tag"><strong>H2:</strong> PlayStation mantendrá la producción de discos físicos baj...</span>
+<span class="tag"><strong>H2:</strong> Resident Evil: estos son los juegos mejor puntuados de la...</span>
+<span class="tag"><strong>H2:</strong> Llega el fin de los juegos físicos para PlayStation en en...</span>
+<span class="tag"><strong>H2:</strong> GTA VI elimina el disco físico: Rockstar confirma la peor...</span>
+<span class="tag"><strong>H2:</strong> GTA VI: ¿Cuáles son los beneficios y desventajas de la Ul...</span>
+<span class="tag"><strong>H2:</strong> Preventa de GTA VI: Cómo y dónde reservar el juego este 2...</span>
+<span class="tag"><strong>H2:</strong> GTA VI ya tiene fecha de reservas y Star Fox 64 Remake so...</span>
+</div>
+
+  </div>
+
+  <div class="footer">Reporte generado por Ecuavisa el 2026-07-10T00:58:49.374Z</div>
+</div>
+</body>
+</html>

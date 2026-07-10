@@ -1,0 +1,2300 @@
+{
+  "timestamp": "2026-07-10T01:54:31.493Z",
+  "totalProcessed": 35,
+  "totalErrors": 0,
+  "results": [
+    {
+      "url": "https://www.ecuavisa.com/?_cb=1783648179762",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "description": "Ensure headings have discernible text",
+          "help": "Headings should not be empty",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/empty-heading?application=playwright",
+          "nodes": 1,
+          "severity": "minor",
+          "targets": [
+            "div:nth-child(7) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > a[rel=\"noopener noreferrer\"][target=\"_blank\"] > .styles_title__RLAQr"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/heading-order?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            ".styles_accordionStyled__OmWsf:nth-child(1) > h3"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 9,
+          "severity": "serious",
+          "targets": [
+            "div:nth-child(5) > .home-slot > .styles_content__pvRL2 > .styles_readMoreContainer__uHFhL > .styles_contentViewMore__IJtXy > .styles_readMore___LrCL[rel=\"noopener noreferrer\"][target=\"_blank\"]",
+            "div:nth-child(7) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > a[rel=\"noopener noreferrer\"][target=\"_blank\"]",
+            "div:nth-child(7) > .home-slot > .styles_content__pvRL2 > .styles_readMoreContainer__uHFhL > .styles_contentViewMore__IJtXy > .styles_readMore___LrCL[rel=\"noopener noreferrer\"][target=\"_blank\"]",
+            ".styles_readMore___LrCL[href$=\"mundo\"][rel=\"noopener noreferrer\"]",
+            "div:nth-child(9) > div > .home-slot > .styles_content__pvRL2 > .styles_readMoreContainer__uHFhL > .styles_contentViewMore__IJtXy > .styles_readMore___LrCL[rel=\"noopener noreferrer\"][target=\"_blank\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 119,
+          "severity": "moderate",
+          "targets": [
+            ".container_full_width-mundial",
+            ".styles_content__GiDcK > .styles_content__BN_S9 > figure > .styles_backdrop__LkyRZ[target=\"_self\"] > picture",
+            ".styles_content__GiDcK > .styles_content__BN_S9 > .styles_newsDescription__F_uk_",
+            ".styles_content__GiDcK > .styles_content__WFVPZ > .styles_contentNew__CPeF3:nth-child(1) > a > .styles_imageBox__Yt49H > figure",
+            ".styles_content__GiDcK > .styles_content__WFVPZ > .styles_contentNew__CPeF3:nth-child(1) > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At"
+          ]
+        }
+      ],
+      "axeViolationCount": 5
+    },
+    {
+      "url": "https://www.ecuavisa.com/ultimas-noticias?_cb=1783648188234",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "aria-command-name",
+          "impact": "serious",
+          "description": "Ensure every ARIA button, link and menuitem has an accessible name",
+          "help": "ARIA commands must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/aria-command-name?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0"
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+          "nodes": 9,
+          "severity": "serious",
+          "targets": [
+            ".styles_ItemCustomContent__0JVwO:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-nacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(6) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(14) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(18) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(25) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]"
+          ]
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 184,
+          "severity": "moderate",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0",
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > figure",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > h2"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias?_cb=1783648196414",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 3,
+          "severity": "serious",
+          "targets": [
+            ".styles_readMore___LrCL",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 83,
+          "severity": "moderate",
+          "targets": [
+            "div:nth-child(1) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > h1",
+            ".styles_headerSection__DawGJ",
+            "div:nth-child(2) > .styles_content__BN_S9 > figure",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_articule__XwUJ0"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/mundo?_cb=1783648203990",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 3,
+          "severity": "serious",
+          "targets": [
+            ".styles_readMore___LrCL",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 82,
+          "severity": "moderate",
+          "targets": [
+            "div:nth-child(1) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > h1",
+            ".styles_headerSection__DawGJ",
+            "div:nth-child(2) > .styles_content__BN_S9 > figure",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_articule__XwUJ0"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/deportes?_cb=1783648211652",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "description": "Ensure headings have discernible text",
+          "help": "Headings should not be empty",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/empty-heading?application=playwright",
+          "nodes": 6,
+          "severity": "minor",
+          "targets": [
+            ".container-news.container_full_width:nth-child(7) > .container > .titulo-news > h2",
+            ".bloque-la-cancha > .container > .titulo-news > h2",
+            "a > .chiringuito-h2",
+            ".lo-mas-visto-title > .chiringuito-h2",
+            ".mas-temas-title > .chiringuito-h2"
+          ]
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/heading-order?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            ".deportes-seccion-1 > .container > .block-principal > article > .styles_newsDescription__vOiGA > .styles_boxInformation__be9Lw > .styles_articule__Mx4a2"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            ".titulo-news > a",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 47,
+          "severity": "moderate",
+          "targets": [
+            ".Equipos_ligapro_container",
+            ".container_full_width-wrapper:nth-child(2)",
+            ".deportes-seccion-1 > .container > .block-principal",
+            ".publicidad_mov",
+            ".container:nth-child(6)"
+          ]
+        }
+      ],
+      "axeViolationCount": 6
+    },
+    {
+      "url": "https://www.ecuavisa.com/entretenimiento?_cb=1783648219928",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 5,
+          "severity": "serious",
+          "targets": [
+            ".styles_readMore___LrCL[href$=\"encontacto\"]",
+            ".styles_readMore___LrCL[href$=\"hackers-de-la-farandula\"]",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 83,
+          "severity": "moderate",
+          "targets": [
+            "div:nth-child(1) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > h1",
+            ".styles_headerSection__DawGJ",
+            "div:nth-child(2) > .styles_content__BN_S9 > figure",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_articule__XwUJ0"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias?_cb=1783648227777",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 1,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 2,
+          "severity": "moderate",
+          "targets": [
+            "html",
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/ecuavisa\\.com\\/section_mobile_middle_1_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 92,
+          "severity": "moderate",
+          "targets": [
+            "div:nth-child(1) > .home-slot > .styles_content__pvRL2 > .styles_titleContent__EGpjd[data-after=\"false\"] > h1",
+            ".styles_headerSection__DawGJ",
+            "div:nth-child(2) > .styles_content__BN_S9 > figure",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At",
+            "div:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_articule__XwUJ0"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/programas?_cb=1783648235311",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 10,
+          "severity": "serious",
+          "targets": [
+            "div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "a[href$=\"contacto-directo\"]",
+            "div:nth-child(4) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "div:nth-child(5) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 180,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            "div:nth-child(1) > div:nth-child(1) > h2",
+            "div:nth-child(1) > div:nth-child(1) > .styles_description__L9Ds5",
+            ".card:nth-child(1) > .styles_card__kMwkM > .styles_imageWrapper__leqDB > .styles_image__KoqwZ[loading=\"eager\"][fetchpriority=\"high\"]",
+            ".Quito > .carrousel-ssr > .card:nth-child(1) > .styles_card__kMwkM > .styles_cardContent__S0pxk"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/la-noticia-a-fondo?_cb=1783648243375",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/heading-order?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            ".items1x > div > .item-noticias > .listado-noticias > article > .mediablock > .styles_newsDescription__DOf6m.text-block > .styles_boxInformation__PFgaQ > .styles_articule__5GPLW"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 21,
+          "severity": "moderate",
+          "targets": [
+            "#content-layout > div:nth-child(2) > div:nth-child(1)",
+            ".cintillo-rd",
+            ".CintilloCeleste_cintilloMobile__lYtJD",
+            ".items1x > div > .item-noticias > .listado-noticias > article > .mediablock > .styles_image__bcKhZ.multimedia",
+            ".items1x > div > .item-noticias > .listado-noticias > article > .mediablock > .styles_newsDescription__DOf6m.text-block > .styles_boxInformation__PFgaQ > .styles_articule__5GPLW"
+          ]
+        }
+      ],
+      "axeViolationCount": 5
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/ecuador?_cb=1783648250717",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/quito?_cb=1783648259146",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 3,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 50,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/guayaquil?_cb=1783648267914",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/politica?_cb=1783648276256",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/economia?_cb=1783648285196",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/seguridad?_cb=1783648294000",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/noticias/sociedad?_cb=1783648301831",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            ".depor"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/deportes/futbol-nacional?_cb=1783648309865",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+          "nodes": 46,
+          "severity": "serious",
+          "targets": [
+            "h1 > div",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-nacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-nacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-nacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-nacional\"]"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 68,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/deportes/futbol-internacional?_cb=1783648318320",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+          "nodes": 46,
+          "severity": "serious",
+          "targets": [
+            "h1 > div",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"futbol-internacional\"]"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 56,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/deportes/otros-deportes?_cb=1783648326269",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+          "nodes": 49,
+          "severity": "serious",
+          "targets": [
+            "h1 > div",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"otros-deportes\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"otros-deportes\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"otros-deportes\"]",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5) > .styles_content__BN_S9 > .styles_newsDescription__F_uk_ > .styles_boxInformation__rg6ZC > .styles_sectionDescriptionContainer__ZY2At > .depor.styles_sectionDescriptionSport__CgtTM[href$=\"otros-deportes\"]"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/piso-17?_cb=1783648334262",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page should contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/page-has-heading-one?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 54,
+          "severity": "moderate",
+          "targets": [
+            ".piso17_titulo",
+            "img[width=\"1200\"]",
+            ".principal > article > .text_block",
+            "article:nth-child(1) > a > .frame > .imagen_multimedia[width=\"512\"][height=\"330\"]",
+            ".noticias.listado > article:nth-child(1) > .text_block"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/el-chiringuito-de-jugones-en-vivo?_cb=1783648343129",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page should contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/page-has-heading-one?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 7,
+          "severity": "moderate",
+          "targets": [
+            ".header_chiringuito",
+            ".texto_chiringuito",
+            ".contenido > .listado",
+            ".categoria-ecuavisa",
+            ".c_azul_celeste_Mobile"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/entretenimiento/musica?_cb=1783648349684",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/entretenimiento/cine?_cb=1783648359034",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/entretenimiento/television?_cb=1783648367184",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/entretenimiento/gaming?_cb=1783648375079",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias/tecnologia?_cb=1783648382951",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias/ciencia?_cb=1783648391100",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias/salud?_cb=1783648400046",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias/redes?_cb=1783648409712",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 48,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 2
+    },
+    {
+      "url": "https://www.ecuavisa.com/tendencias/curiosidades?_cb=1783648418930",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Ensure <iframe> and <frame> elements have an accessible name",
+          "help": "Frames must have an accessible name",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/frame-title?application=playwright",
+          "nodes": 1,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "help": "Images must have alternative text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+          "nodes": 2,
+          "severity": "critical",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 2,
+          "severity": "serious",
+          "targets": [
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0",
+            "#google_ads_iframe_\\/49542283\\/section_mobile_anchor_0"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 51,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            ".styles_ItemCustomContent__0JVwO:nth-child(1)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(2)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(4)",
+            ".styles_ItemCustomContent__0JVwO:nth-child(5)"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/ecuaterra?_cb=1783648429096",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page should contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/page-has-heading-one?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 41,
+          "severity": "moderate",
+          "targets": [
+            ".item-portada > .noticias > article > .mediablock > .styles_image__bcKhZ.multimedia",
+            ".item-portada > .noticias > article > .mediablock > .styles_newsDescription__DOf6m.text-block > .styles_boxInformation__PFgaQ > .styles_articule__5GPLW",
+            ".item-portada > .noticias > article > .mediablock > .styles_newsDescription__DOf6m.text-block > .styles_boxInformation__PFgaQ > .styles_description___D1hd",
+            ".item-portada-list > .noticias > article:nth-child(1) > .mediablock > .styles_image__bcKhZ.multimedia",
+            ".item-portada-list > .noticias > article:nth-child(1) > .mediablock > .styles_newsDescription__DOf6m.text-block > .styles_boxInformation__PFgaQ > .styles_articule__5GPLW"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/programas/informativos?_cb=1783648436708",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 8,
+          "severity": "serious",
+          "targets": [
+            "div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "a[href$=\"contacto-directo\"]",
+            "div:nth-child(4) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP",
+            "div:nth-child(5) > div:nth-child(1) > div:nth-child(4) > .styles_readMoreContainer__1HRxT > .styles_readMore__jRWqP"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 177,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            "div:nth-child(1) > div:nth-child(1) > h2",
+            "div:nth-child(1) > div:nth-child(1) > .styles_description__L9Ds5",
+            ".card:nth-child(1) > .styles_card__kMwkM > .styles_imageWrapper__leqDB > .styles_image__KoqwZ[loading=\"eager\"][fetchpriority=\"high\"]",
+            ".Quito > .carrousel-ssr > .card:nth-child(1) > .styles_card__kMwkM > .styles_cardContent__S0pxk"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/programas/entretenimiento?_cb=1783648445595",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "description": "Ensure headings have discernible text",
+          "help": "Headings should not be empty",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/empty-heading?application=playwright",
+          "nodes": 7,
+          "severity": "minor",
+          "targets": [
+            "div:nth-child(1) > div:nth-child(1) > .styles_description__L9Ds5",
+            "div:nth-child(2) > div:nth-child(1) > .styles_description__L9Ds5",
+            "div:nth-child(3) > div:nth-child(1) > .styles_description__L9Ds5",
+            "div:nth-child(4) > div:nth-child(1) > .styles_description__L9Ds5",
+            "div:nth-child(5) > div:nth-child(1) > .styles_description__L9Ds5"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/link-name?application=playwright",
+          "nodes": 7,
+          "severity": "serious",
+          "targets": [
+            "a[href$=\"encontacto\"]",
+            "a[href$=\"hackers-de-la-farandula\"]",
+            ".styles_readMore__jRWqP[href$=\"cholito-forever\"]",
+            "a[href$=\"segunda-temporada\"]",
+            "a[href$=\"compania593\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 144,
+          "severity": "moderate",
+          "targets": [
+            "h1",
+            "div:nth-child(1) > div:nth-child(1) > h2",
+            ".card:nth-child(1) > .styles_card__kMwkM > .styles_imageWrapper__leqDB > .styles_image__KoqwZ[loading=\"eager\"][fetchpriority=\"high\"]",
+            ".En > .carrousel-ssr > .card:nth-child(1) > .styles_card__kMwkM > .styles_cardContent__S0pxk",
+            ".card:nth-child(2) > .styles_card__kMwkM > .styles_imageWrapper__leqDB > .styles_image__KoqwZ[loading=\"eager\"][fetchpriority=\"high\"]"
+          ]
+        }
+      ],
+      "axeViolationCount": 4
+    },
+    {
+      "url": "https://www.ecuavisa.com/cholito-forever?_cb=1783648454228",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page should contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/page-has-heading-one?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 28,
+          "severity": "moderate",
+          "targets": [
+            ".style_bannerMobile__bJkZf",
+            ".fondo-azul-ec:nth-child(2)",
+            ".fondo-azul-ec:nth-child(3)",
+            ".yapa-cholito > .title-block",
+            ".yapa-cholito > .noticias > article:nth-child(1) > a"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    },
+    {
+      "url": "https://www.ecuavisa.com/televistazo/especiales-reportajes?_cb=1783648462494",
+      "statusCode": 200,
+      "metaTitle": null,
+      "canonical": null,
+      "h1Tags": [],
+      "h1Count": 0,
+      "h2Tags": [],
+      "h2Count": 0,
+      "h3Tags": [],
+      "h3Count": 0,
+      "headingIssues": [],
+      "totalImages": 0,
+      "imagesWithoutAlt": 0,
+      "imagesWithoutAltList": [],
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/landmark-one-main?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "help": "Page should contain a level-one heading",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/page-has-heading-one?application=playwright",
+          "nodes": 1,
+          "severity": "moderate",
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+          "nodes": 92,
+          "severity": "moderate",
+          "targets": [
+            ".BannerDerecha_containerMobile__DQMfB.container-banner:nth-child(2)",
+            "h2",
+            ".CintilloCeleste_cintilloMobile__lYtJD",
+            ".container:nth-child(3) > .row > .col-md-8 > div:nth-child(3) > .block-title",
+            ".container:nth-child(3) > .row > .col-md-8 > div:nth-child(3) > .sw_listado.skeleton-wrapper.reportajes-list > .swiper-wrapper > .swiper-slide-active.swiper-slide > .styles_content__q0U9S > .mediablock > .styles_image__bcKhZ.multimedia"
+          ]
+        }
+      ],
+      "axeViolationCount": 3
+    }
+  ]
+}

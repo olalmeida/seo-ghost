@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte SEO - seo-ghost</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  h1 small { font-size: 1rem; color: #666; font-weight: 400; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .num { font-size: 2rem; font-weight: 700; }
+  .card .label { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+  .ok { color: #22c55e; }
+  .warn { color: #f59e0b; }
+  .err { color: #ef4444; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+  th { background: #f8fafc; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fef3c7; color: #b45309; }
+  .badge-error { background: #fee2e2; color: #b91c1c; }
+  .detail { background: #fff; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .detail h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .detail-grid .item { }
+  .detail-grid .item .val { font-size: 1.1rem; font-weight: 600; }
+  .detail-grid .item .lbl { font-size: 0.8rem; color: #666; }
+  .img-list { list-style: none; padding: 0; }
+  .img-list li { padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; word-break: break-all; }
+  .img-list li:last-child { border: none; }
+  .img-list a { color: #2563eb; text-decoration: none; }
+  .img-list a:hover { text-decoration: underline; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 0.35rem 0.75rem; margin: 0.25rem 0; border-radius: 6px; font-size: 0.85rem; }
+  .issue-list .issue-error { background: #fee2e2; color: #b91c1c; }
+  .issue-list .issue-warn { background: #fef3c7; color: #b45309; }
+  .heading-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .heading-list .tag { background: #eef2ff; color: #4338ca; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  .footer { text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+  @media (max-width: 768px) { body { padding: 1rem; } .summary-cards { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Ecuavisa <small>Reporte de Metadata SEO</small></h1>
+  <p class="subtitle">9/7/2026, 8:02:23 p. m.</p>
+
+  <div class="summary-cards">
+    <div class="card"><div class="num ok">6</div><div class="label">URLs procesadas</div></div>
+    <div class="card"><div class="num ok">6</div><div class="label">Exitosas</div></div>
+    <div class="card"><div class="num ok">0</div><div class="label">Con errores</div></div>
+  </div>
+
+  <h2>📊 Resumen General</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>URL</th><th>Status</th><th>Title</th><th>H1</th><th>H2</th><th>H3</th><th>Img</th><th>Sin Alt</th><th>Issues</th>
+    </tr></thead>
+    <tbody>
+
+      <tr>
+        <td>1</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/tecnologia?_cb=1783645248845" target="_blank" title="https://www.ecuavisa.com/tendencias/tecnologia?_cb=1783645248845">www.ecuavisa.com/tendencias/tecnologia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Tecnología | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/ciencia?_cb=1783645265634" target="_blank" title="https://www.ecuavisa.com/tendencias/ciencia?_cb=1783645265634">www.ecuavisa.com/tendencias/ciencia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Ciencia | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/salud?_cb=1783645284224" target="_blank" title="https://www.ecuavisa.com/tendencias/salud?_cb=1783645284224">www.ecuavisa.com/tendencias/salud</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Salud | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/redes?_cb=1783645302552" target="_blank" title="https://www.ecuavisa.com/tendencias/redes?_cb=1783645302552">www.ecuavisa.com/tendencias/redes</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Redes Sociales | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/curiosidades?_cb=1783645320312" target="_blank" title="https://www.ecuavisa.com/tendencias/curiosidades?_cb=1783645320312">www.ecuavisa.com/tendencias/curiosidades</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Curiosidades | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td><a href="https://www.ecuavisa.com/ecuaterra?_cb=1783645338861" target="_blank" title="https://www.ecuavisa.com/ecuaterra?_cb=1783645338861">www.ecuavisa.com/ecuaterra</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuaterra: Iniciativa de conservación ambiental en Ecuado...</td>
+        <td>0</td>
+        <td>0</td>
+        <td>22</td>
+        <td>0/19</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h2>🔍 Resultados Detallados</h2>
+
+  <div class="detail">
+    <h3>1. <a href="https://www.ecuavisa.com/tendencias/tecnologia" target="_blank">https://www.ecuavisa.com/tendencias/tecnologia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Tecnología | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias/tecnologia</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Tecnología</span>
+<span class="tag"><strong>H2:</strong> OpenAI anunció el lanzamiento de su nueva serie de modelo...</span>
+<span class="tag"><strong>H2:</strong> China estrena robots humanoides hiperrealistas diseñados ...</span>
+<span class="tag"><strong>H2:</strong> Alerta sísmica en Android y iPhone: así puedes activar la...</span>
+<span class="tag"><strong>H2:</strong> El Honor X80 Pro Max le apostó a una batería de más durab...</span>
+<span class="tag"><strong>H2:</strong> Incendios, robos y amor: qué hacen los agentes de IA cuan...</span>
+<span class="tag"><strong>H2:</strong> Esta es la nueva vulnerabilidad de los dispositivos iPhon...</span>
+<span class="tag"><strong>H2:</strong> Android 17: Estas son las nuevas actualizaciones del sist...</span>
+<span class="tag"><strong>H2:</strong> Así se verá la cámara del nuevo iPhone 18 Pro Max, según ...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>2. <a href="https://www.ecuavisa.com/tendencias/ciencia" target="_blank">https://www.ecuavisa.com/tendencias/ciencia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Ciencia | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias/ciencia</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Ciencia</span>
+<span class="tag"><strong>H2:</strong> ¿Será visible en Ecuador el eclipse solar del 12 de agosto?</span>
+<span class="tag"><strong>H2:</strong> Las abejas pueden expresar comportamientos similares a la...</span>
+<span class="tag"><strong>H2:</strong> Científicos descubren que el daño a la capa de ozono come...</span>
+<span class="tag"><strong>H2:</strong> La Luna de Fresa dejó impresionantes imágenes y ahora tam...</span>
+<span class="tag"><strong>H2:</strong> Primer hueso de un dinosaurio que habitaba en una Antárti...</span>
+<span class="tag"><strong>H2:</strong> La luna llena del ciervo y otros espectáculos astronómico...</span>
+<span class="tag"><strong>H2:</strong> Terremotos en Venezuela: ¿por qué ocurre un doblete sísmi...</span>
+<span class="tag"><strong>H2:</strong> Asteroide 1997 NC1 pasará cerca de la Tierra el sábado 27...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>3. <a href="https://www.ecuavisa.com/tendencias/salud" target="_blank">https://www.ecuavisa.com/tendencias/salud</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Salud | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias/salud</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Salud</span>
+<span class="tag"><strong>H2:</strong> ¿Sabías qué los trastornos musculoesqueléticos afectan a ...</span>
+<span class="tag"><strong>H2:</strong> Mujer desarrolla 38 parásitos cerebrales tras consumir ca...</span>
+<span class="tag"><strong>H2:</strong> 6 formas respaldadas por la ciencia para hacer que los ni...</span>
+<span class="tag"><strong>H2:</strong> Reino Unido: estudio asocia el sedentarismo prolongado co...</span>
+<span class="tag"><strong>H2:</strong> ¿El protector solar es un gasto o una inversión? La cienc...</span>
+<span class="tag"><strong>H2:</strong> El impacto de las precarias condiciones de trabajo en la ...</span>
+<span class="tag"><strong>H2:</strong> ¿Cómo funciona el metoxiflurano, el medicamento que usó I...</span>
+<span class="tag"><strong>H2:</strong> 7 maneras de engañarte a ti mismo para comer mejor</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>4. <a href="https://www.ecuavisa.com/tendencias/redes" target="_blank">https://www.ecuavisa.com/tendencias/redes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Redes Sociales | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias/redes</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Redes</span>
+<span class="tag"><strong>H2:</strong> Colombia tiene su propio Erling Haaland: un niño fue regi...</span>
+<span class="tag"><strong>H2:</strong> Ed Sheeran ofrece concierto privado a la selección de Ing...</span>
+<span class="tag"><strong>H2:</strong> Un niño leyó la Biblia durante la remontada de Argentina ...</span>
+<span class="tag"><strong>H2:</strong> X apuesta por el contenido original con nuevas funciones ...</span>
+<span class="tag"><strong>H2:</strong> ¿Qué son los matrimonios lavanda y por qué son tendencia ...</span>
+<span class="tag"><strong>H2:</strong> Shakira dedicó un emotivo mensaje de apoyo a la Selección...</span>
+<span class="tag"><strong>H2:</strong> ¡Los Ghetto kids, que bailarán en la final del mundial, e...</span>
+<span class="tag"><strong>H2:</strong> La discreta vida de pareja de Erling Haaland e Isabel Hau...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>5. <a href="https://www.ecuavisa.com/tendencias/curiosidades" target="_blank">https://www.ecuavisa.com/tendencias/curiosidades</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Curiosidades | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias/curiosidades</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Curiosidades</span>
+<span class="tag"><strong>H2:</strong> Video | Una cámara captó desde dentro del cráter la impre...</span>
+<span class="tag"><strong>H2:</strong> El fenómeno del 8 de julio: ¿por qué casi toda la poblaci...</span>
+<span class="tag"><strong>H2:</strong> Erling Haaland es un inversor en un exitoso negocio de li...</span>
+<span class="tag"><strong>H2:</strong> El techo del mundo existe y está en la cordillera de Pami...</span>
+<span class="tag"><strong>H2:</strong> Cómo es Residencia, el fascinante hotel para científicos ...</span>
+<span class="tag"><strong>H2:</strong> Los 4 errores más comunes al acumular cosas y cómo soluci...</span>
+<span class="tag"><strong>H2:</strong> Por qué en Francia están pintando las ventanas con tiza p...</span>
+<span class="tag"><strong>H2:</strong> Ecuador consigue un Récord Guinnes al reunir 300 personas...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>6. <a href="https://www.ecuavisa.com/ecuaterra" target="_blank">https://www.ecuavisa.com/ecuaterra</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuaterra: Iniciativa de conservación ambiental en Ecuador | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/ecuaterra</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">22</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">19</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-error">No hay H1 en la página</li>
+</ul>
+
+  </div>
+
+  <div class="footer">Reporte generado por Ecuavisa el 2026-07-10T01:02:23.776Z</div>
+</div>
+</body>
+</html>

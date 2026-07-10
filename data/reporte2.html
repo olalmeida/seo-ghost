@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte SEO - seo-ghost</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  h1 small { font-size: 1rem; color: #666; font-weight: 400; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .num { font-size: 2rem; font-weight: 700; }
+  .card .label { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+  .ok { color: #22c55e; }
+  .warn { color: #f59e0b; }
+  .err { color: #ef4444; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+  th { background: #f8fafc; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fef3c7; color: #b45309; }
+  .badge-error { background: #fee2e2; color: #b91c1c; }
+  .detail { background: #fff; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .detail h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .detail-grid .item { }
+  .detail-grid .item .val { font-size: 1.1rem; font-weight: 600; }
+  .detail-grid .item .lbl { font-size: 0.8rem; color: #666; }
+  .img-list { list-style: none; padding: 0; }
+  .img-list li { padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; word-break: break-all; }
+  .img-list li:last-child { border: none; }
+  .img-list a { color: #2563eb; text-decoration: none; }
+  .img-list a:hover { text-decoration: underline; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 0.35rem 0.75rem; margin: 0.25rem 0; border-radius: 6px; font-size: 0.85rem; }
+  .issue-list .issue-error { background: #fee2e2; color: #b91c1c; }
+  .issue-list .issue-warn { background: #fef3c7; color: #b45309; }
+  .heading-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .heading-list .tag { background: #eef2ff; color: #4338ca; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  .footer { text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+  @media (max-width: 768px) { body { padding: 1rem; } .summary-cards { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Ecuavisa <small>Reporte de Metadata SEO</small></h1>
+  <p class="subtitle">9/7/2026, 7:33:19 p. m.</p>
+
+  <div class="summary-cards">
+    <div class="card"><div class="num ok">8</div><div class="label">URLs procesadas</div></div>
+    <div class="card"><div class="num ok">8</div><div class="label">Exitosas</div></div>
+    <div class="card"><div class="num ok">0</div><div class="label">Con errores</div></div>
+  </div>
+
+  <h2>📊 Resumen General</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>URL</th><th>Status</th><th>Title</th><th>H1</th><th>H2</th><th>H3</th><th>Img</th><th>Sin Alt</th><th>Issues</th>
+    </tr></thead>
+    <tbody>
+
+      <tr>
+        <td>1</td>
+        <td><a href="https://www.ecuavisa.com/la-noticia-a-fondo?_cb=1783643492326" target="_blank" title="https://www.ecuavisa.com/la-noticia-a-fondo?_cb=1783643492326">www.ecuavisa.com/la-noticia-a-fondo</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>La noticia a fondo | Ecuavisa.com</td>
+        <td>1</td>
+        <td>0</td>
+        <td>15</td>
+        <td>0/14</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="https://www.ecuavisa.com/noticias/ecuador?_cb=1783643500795" target="_blank" title="https://www.ecuavisa.com/noticias/ecuador?_cb=1783643500795">www.ecuavisa.com/noticias/ecuador</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Ecuador | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="https://www.ecuavisa.com/noticias/quito?_cb=1783643514134" target="_blank" title="https://www.ecuavisa.com/noticias/quito?_cb=1783643514134">www.ecuavisa.com/noticias/quito</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Quito | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><a href="https://www.ecuavisa.com/noticias/guayaquil?_cb=1783643527221" target="_blank" title="https://www.ecuavisa.com/noticias/guayaquil?_cb=1783643527221">www.ecuavisa.com/noticias/guayaquil</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Guayaquil | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td><a href="https://www.ecuavisa.com/noticias/politica?_cb=1783643546354" target="_blank" title="https://www.ecuavisa.com/noticias/politica?_cb=1783643546354">www.ecuavisa.com/noticias/politica</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Política | Ecuavisa</td>
+        <td>1</td>
+        <td>138</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td><a href="https://www.ecuavisa.com/noticias/economia?_cb=1783643560477" target="_blank" title="https://www.ecuavisa.com/noticias/economia?_cb=1783643560477">www.ecuavisa.com/noticias/economia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Economía | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>7</td>
+        <td><a href="https://www.ecuavisa.com/noticias/seguridad?_cb=1783643573996" target="_blank" title="https://www.ecuavisa.com/noticias/seguridad?_cb=1783643573996">www.ecuavisa.com/noticias/seguridad</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Seguridad | Ecuavisa</td>
+        <td>1</td>
+        <td>139</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>8</td>
+        <td><a href="https://www.ecuavisa.com/noticias/sociedad?_cb=1783643588071" target="_blank" title="https://www.ecuavisa.com/noticias/sociedad?_cb=1783643588071">www.ecuavisa.com/noticias/sociedad</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Últimas Noticias de Sociedad | Ecuavisa</td>
+        <td>1</td>
+        <td>141</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h2>🔍 Resultados Detallados</h2>
+
+  <div class="detail">
+    <h3>1. <a href="https://www.ecuavisa.com/la-noticia-a-fondo" target="_blank">https://www.ecuavisa.com/la-noticia-a-fondo</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">La noticia a fondo | Ecuavisa.com</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/la-noticia-a-fondo</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">15</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">14</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Salto de jerarquía: hay H1 y H3 pero no H2 intermedio</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> la noticia a fondo</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>2. <a href="https://www.ecuavisa.com/noticias/ecuador" target="_blank">https://www.ecuavisa.com/noticias/ecuador</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Ecuador | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/ecuador</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Ecuador</span>
+<span class="tag"><strong>H2:</strong> Romina Muñoz renuncia al Viceministerio de Cultura</span>
+<span class="tag"><strong>H2:</strong> 27 pescadores de Manabí, reportados como desaparecidos, f...</span>
+<span class="tag"><strong>H2:</strong> Cigarrillos electrónicos irregulares fueron decomisados p...</span>
+<span class="tag"><strong>H2:</strong> Clima 9 de julio en Ecuador: Inamhi prevé niveles altos d...</span>
+<span class="tag"><strong>H2:</strong> Dos muertos tras caída de un bus al río Ambato</span>
+<span class="tag"><strong>H2:</strong> Nuevo reglamento para el transporte de carga pesada entró...</span>
+<span class="tag"><strong>H2:</strong> En Azuay, Cañar y Morona Santiago, el Ministerio de Ambie...</span>
+<span class="tag"><strong>H2:</strong> Conozca por dentro el MuNA, el nuevo Museo Nacional que c...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>3. <a href="https://www.ecuavisa.com/noticias/quito" target="_blank">https://www.ecuavisa.com/noticias/quito</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Quito | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/quito</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Quito</span>
+<span class="tag"><strong>H2:</strong> Mayores de 18 años podrán terminar el bachillerato gratis...</span>
+<span class="tag"><strong>H2:</strong> Pico y placa en Quito: las restricciones de movilidad par...</span>
+<span class="tag"><strong>H2:</strong> La AMT actualiza el sistema de órdenes de pago en Quito: ...</span>
+<span class="tag"><strong>H2:</strong> Pico y placa en Quito: las restricciones de movilidad par...</span>
+<span class="tag"><strong>H2:</strong> Mujer cuenta que escapó de sus captores tras retenida des...</span>
+<span class="tag"><strong>H2:</strong> Ruta de las Iglesias 2026 en Quito: estos son los cierres...</span>
+<span class="tag"><strong>H2:</strong> Una chica fue atropellada en la avenida 6 de Diciembre y ...</span>
+<span class="tag"><strong>H2:</strong> Pico y placa en Quito: las restricciones de movilidad par...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>4. <a href="https://www.ecuavisa.com/noticias/guayaquil" target="_blank">https://www.ecuavisa.com/noticias/guayaquil</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Guayaquil | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/guayaquil</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Guayaquil</span>
+<span class="tag"><strong>H2:</strong> Primer paso elevado en Los Ceibos estará habilitado desde...</span>
+<span class="tag"><strong>H2:</strong> Tragedia en la Vía Perimetral: motociclista fallece y dos...</span>
+<span class="tag"><strong>H2:</strong> Guayaquil: tres fallecidos y carros volcados tras una ola...</span>
+<span class="tag"><strong>H2:</strong> Agente de tránsito de la ATM es separado tras ser grabado...</span>
+<span class="tag"><strong>H2:</strong> Qué hacer en Guayaquil del 6 al 12 de julio: conciertos y...</span>
+<span class="tag"><strong>H2:</strong> Fiestas julianas de Guayaquil: cierres viales este fin de...</span>
+<span class="tag"><strong>H2:</strong> Guayaquil: incendio en Monte Sinaí destruye tres vivienda...</span>
+<span class="tag"><strong>H2:</strong> Compensación por seis meses y subsidio de USD 0,05: esto ...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>5. <a href="https://www.ecuavisa.com/noticias/politica" target="_blank">https://www.ecuavisa.com/noticias/politica</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Política | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/politica</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">138</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Política</span>
+<span class="tag"><strong>H2:</strong> De padres a hijos: los apellidos que llevan décadas gober...</span>
+<span class="tag"><strong>H2:</strong> Caso Sinohydro, minuto a minuto | Tribunal recibe alegato...</span>
+<span class="tag"><strong>H2:</strong> Karla Saud, personaje clave en el caso Progen, fue deteni...</span>
+<span class="tag"><strong>H2:</strong> Alcalde Aquiles Álvarez: ¿Cuál es su situación jurídica y...</span>
+<span class="tag"><strong>H2:</strong> Precios de los combustibles bajarán en Ecuador por una re...</span>
+<span class="tag"><strong>H2:</strong> Daniel Noboa designa a Piero Sampietro como gerente de la...</span>
+<span class="tag"><strong>H2:</strong> Ecuador y Paraguay preparan visita de Santiago Peña a Quito</span>
+<span class="tag"><strong>H2:</strong> Concejo Cantonal aprueba 30 días de vacaciones para el al...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>6. <a href="https://www.ecuavisa.com/noticias/economia" target="_blank">https://www.ecuavisa.com/noticias/economia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Economía | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/economia</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Economía</span>
+<span class="tag"><strong>H2:</strong> Así puedes calcular tu capacidad de endeudamiento antes d...</span>
+<span class="tag"><strong>H2:</strong> Precio de combustibles en Ecuador: Extra, Ecopaís y diése...</span>
+<span class="tag"><strong>H2:</strong> China restringe exportaciones de varias plantas camaroner...</span>
+<span class="tag"><strong>H2:</strong> Compra de vehículos 100 % eléctricos casi se cuadriplicó ...</span>
+<span class="tag"><strong>H2:</strong> Senae confirma la reanudación de operaciones aduaneras en...</span>
+<span class="tag"><strong>H2:</strong> Ecuador suma a su producción petrolera 3 181 barriles por...</span>
+<span class="tag"><strong>H2:</strong> La Asamblea Nacional debate un proyecto de ley que aspira...</span>
+<span class="tag"><strong>H2:</strong> SRI recategorizó a contribuyentes en el régimen Rimpe; as...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>7. <a href="https://www.ecuavisa.com/noticias/seguridad" target="_blank">https://www.ecuavisa.com/noticias/seguridad</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Seguridad | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/seguridad</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">139</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Seguridad</span>
+<span class="tag"><strong>H2:</strong> La Judicatura y el Ministerio del Interior desliegan plan...</span>
+<span class="tag"><strong>H2:</strong> Nueve presuntos miembros de Los Águilas fueron capturados...</span>
+<span class="tag"><strong>H2:</strong> Supuestos compañeros de trabajo de Santiago Ávalos fueron...</span>
+<span class="tag"><strong>H2:</strong> La Policía ingresa a los colegios de Los Ríos para requis...</span>
+<span class="tag"><strong>H2:</strong> Sicarios asesinan a un hombre y dejan otro herido en Carc...</span>
+<span class="tag"><strong>H2:</strong> Dos jóvenes, de 24 y 17 años, fueron hallados muertos en ...</span>
+<span class="tag"><strong>H2:</strong> Sicariato a gerente de la UDLA: cinco adultos detenidos y...</span>
+<span class="tag"><strong>H2:</strong> Alias Fred, presunto armero de los Chone Killers, fue cap...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>8. <a href="https://www.ecuavisa.com/noticias/sociedad" target="_blank">https://www.ecuavisa.com/noticias/sociedad</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Últimas Noticias de Sociedad | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias/sociedad</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">141</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Sociedad</span>
+<span class="tag"><strong>H2:</strong> Estas son las fechas para realizar traslados y matrículas...</span>
+<span class="tag"><strong>H2:</strong> El Instituto Ecuatoriano de Seguridad Social abrió vacant...</span>
+<span class="tag"><strong>H2:</strong> Fallas técnicas se reportaron durante la  jornada 1 de la...</span>
+<span class="tag"><strong>H2:</strong> 50 toneladas de ayuda humanitaria partieron desde Ecuador...</span>
+<span class="tag"><strong>H2:</strong> Terremotos en Venezuela: continúa la búsqueda de Ana Pinc...</span>
+<span class="tag"><strong>H2:</strong> Pacientes con esclerosis múltiple acudieron a la Defensor...</span>
+<span class="tag"><strong>H2:</strong> Tras pasar por la sala de cuidados intensivos durante lar...</span>
+<span class="tag"><strong>H2:</strong> &quot;Le pedí a Dios que nos dejara ganar a Alemania y yo rega...</span>
+</div>
+
+  </div>
+
+  <div class="footer">Reporte generado por Ecuavisa el 2026-07-10T00:33:19.715Z</div>
+</div>
+</body>
+</html>

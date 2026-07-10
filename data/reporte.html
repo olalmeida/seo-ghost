@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte SEO - seo-ghost</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  h1 small { font-size: 1rem; color: #666; font-weight: 400; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .num { font-size: 2rem; font-weight: 700; }
+  .card .label { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+  .ok { color: #22c55e; }
+  .warn { color: #f59e0b; }
+  .err { color: #ef4444; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+  th { background: #f8fafc; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fef3c7; color: #b45309; }
+  .badge-error { background: #fee2e2; color: #b91c1c; }
+  .detail { background: #fff; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .detail h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .detail-grid .item { }
+  .detail-grid .item .val { font-size: 1.1rem; font-weight: 600; }
+  .detail-grid .item .lbl { font-size: 0.8rem; color: #666; }
+  .img-list { list-style: none; padding: 0; }
+  .img-list li { padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; word-break: break-all; }
+  .img-list li:last-child { border: none; }
+  .img-list a { color: #2563eb; text-decoration: none; }
+  .img-list a:hover { text-decoration: underline; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 0.35rem 0.75rem; margin: 0.25rem 0; border-radius: 6px; font-size: 0.85rem; }
+  .issue-list .issue-error { background: #fee2e2; color: #b91c1c; }
+  .issue-list .issue-warn { background: #fef3c7; color: #b45309; }
+  .heading-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .heading-list .tag { background: #eef2ff; color: #4338ca; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  .footer { text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+  @media (max-width: 768px) { body { padding: 1rem; } .summary-cards { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Ecuavisa<small>Reporte de Metadata SEO</small></h1>
+  <p class="subtitle">9/7/2026, 7:39:08 p. m.</p>
+
+  <div class="summary-cards">
+    <div class="card"><div class="num ok">8</div><div class="label">URLs procesadas</div></div>
+    <div class="card"><div class="num ok">8</div><div class="label">Exitosas</div></div>
+    <div class="card"><div class="num ok">0</div><div class="label">Con errores</div></div>
+  </div>
+
+  <h2>📊 Resumen General</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>URL</th><th>Status</th><th>Title</th><th>H1</th><th>H2</th><th>H3</th><th>Img</th><th>Sin Alt</th><th>Issues</th>
+    </tr></thead>
+    <tbody>
+
+      <tr>
+        <td>1</td>
+        <td><a href="https://www.ecuavisa.com/?_cb=1783643888286" target="_blank" title="https://www.ecuavisa.com/?_cb=1783643888286">www.ecuavisa.com/</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Últimas Noticias del Ecuador y del mundo hoy.</td>
+        <td>7</td>
+        <td>34</td>
+        <td>9</td>
+        <td><span class="badge badge-warning">6/56</span></td>
+        <td>6</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="https://www.ecuavisa.com/ultimas-noticias?_cb=1783643895714" target="_blank" title="https://www.ecuavisa.com/ultimas-noticias?_cb=1783643895714">www.ecuavisa.com/ultimas-noticias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Lo último</td>
+        <td>1</td>
+        <td>138</td>
+        <td>9</td>
+        <td>0/162</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="https://www.ecuavisa.com/noticias?_cb=1783643908809" target="_blank" title="https://www.ecuavisa.com/noticias?_cb=1783643908809">www.ecuavisa.com/noticias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Noticias</td>
+        <td>4</td>
+        <td>24</td>
+        <td>9</td>
+        <td>0/40</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><a href="https://www.ecuavisa.com/mundo?_cb=1783643915581" target="_blank" title="https://www.ecuavisa.com/mundo?_cb=1783643915581">www.ecuavisa.com/mundo</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | mundo</td>
+        <td>4</td>
+        <td>24</td>
+        <td>9</td>
+        <td>0/40</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td><a href="https://www.ecuavisa.com/deportes?_cb=1783643922445" target="_blank" title="https://www.ecuavisa.com/deportes?_cb=1783643922445">www.ecuavisa.com/deportes</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Deportes, Fútbol Ecuatoriano y Selección de Ecuador | Ecu...</td>
+        <td>0</td>
+        <td>0</td>
+        <td>65</td>
+        <td><span class="badge badge-warning">10/93</span></td>
+        <td>10</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento?_cb=1783643929397" target="_blank" title="https://www.ecuavisa.com/entretenimiento?_cb=1783643929397">www.ecuavisa.com/entretenimiento</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Entretenimiento</td>
+        <td>5</td>
+        <td>24</td>
+        <td>9</td>
+        <td>0/40</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>7</td>
+        <td><a href="https://www.ecuavisa.com/tendencias?_cb=1783643936293" target="_blank" title="https://www.ecuavisa.com/tendencias?_cb=1783643936293">www.ecuavisa.com/tendencias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Tendencias</td>
+        <td>4</td>
+        <td>32</td>
+        <td>9</td>
+        <td>0/38</td>
+        <td>0</td>
+        <td><span class="badge badge-warning">1</span></td>
+      </tr>
+
+      <tr>
+        <td>8</td>
+        <td><a href="https://www.ecuavisa.com/programas?_cb=1783643943201" target="_blank" title="https://www.ecuavisa.com/programas?_cb=1783643943201">www.ecuavisa.com/programas</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>Ecuavisa | Programas</td>
+        <td>1</td>
+        <td>8</td>
+        <td>17</td>
+        <td>0/85</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h2>🔍 Resultados Detallados</h2>
+
+  <div class="detail">
+    <h3>1. <a href="https://www.ecuavisa.com/" target="_blank">https://www.ecuavisa.com/</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Últimas Noticias del Ecuador y del mundo hoy.</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">7</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">34</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">56</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val warn">6</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Múltiples H1 (7 encontrados). Se recomienda solo un H1 por página.</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Precio de combustibles en Ecuador: Extra, Ecopaís y diésel bajarían cinco cen...</span>
+<span class="tag"><strong>H1:</strong> Noticias</span>
+<span class="tag"><strong>H1:</strong> Mundo</span>
+<span class="tag"><strong>H1:</strong> Entretenimiento</span>
+<span class="tag"><strong>H1:</strong> Estilo</span>
+<span class="tag"><strong>H2:</strong> Supuestos compañeros de trabajo de Santiago Ávalos fueron...</span>
+<span class="tag"><strong>H2:</strong> Karla Saud, personaje clave en el caso Progen, fue deteni...</span>
+<span class="tag"><strong>H2:</strong> Caso Sinohydro, minuto a minuto | Tribunal recibe alegato...</span>
+<span class="tag"><strong>H2:</strong> Alcalde Aquiles Álvarez: ¿Cuál es su situación jurídica y...</span>
+<span class="tag"><strong>H2:</strong> Nueve presuntos miembros de Los Águilas fueron capturados...</span>
+<span class="tag"><strong>H2:</strong> Romina Muñoz renuncia al Viceministerio de Cultura</span>
+<span class="tag"><strong>H2:</strong> Primer paso elevado en Los Ceibos estará habilitado desde...</span>
+<span class="tag"><strong>H2:</strong> La Policía ingresa a los colegios de Los Ríos para requis...</span>
+</div>
+
+    <p style="margin-top:1rem"><strong>🖼️ Imágenes sin alt text (6)</strong></p>
+    <ol class="img-list">
+<li><a href="https://assets.ecuavisa.com/__export/1783622592594/sites/ecuavisa/img/2026/07/09/portada_2026_-_2026-07-09t134145_460.jpg_424467981.jpg" target="_blank">portada_2026_-_2026-07-09t134145_460.jpg_424467981.jpg</a></li>
+<li><a href="https://assets.ecuavisa.com/__export/1783627018181/sites/ecuavisa/img/2026/07/09/portada_comunidad.png_255115400.png" target="_blank">portada_comunidad.png_255115400.png</a></li>
+<li><a href="https://assets.ecuavisa.com/__export/1783624467255/sites/ecuavisa/img/2026/07/09/rudo_bwhuh9.jpg_255115400.jpg" target="_blank">rudo_bwhuh9.jpg_255115400.jpg</a></li>
+<li><a href="https://assets.ecuavisa.com/__export/1783611959220/sites/ecuavisa/img/2026/07/09/rudo_bwhqno.jpg_255115400.jpg" target="_blank">rudo_bwhqno.jpg_255115400.jpg</a></li>
+<li><a href="https://assets.ecuavisa.com/__export/1783602405980/sites/ecuavisa/img/2026/07/09/portada_cd.png_255115400.png" target="_blank">portada_cd.png_255115400.png</a></li>
+<li><a href="https://assets.ecuavisa.com/__export/1783600728968/sites/ecuavisa/img/2026/07/09/rudo_bwhnym.jpg_255115400.jpg" target="_blank">rudo_bwhnym.jpg_255115400.jpg</a></li>
+</ol>
+
+  </div>
+
+  <div class="detail">
+    <h3>2. <a href="https://www.ecuavisa.com/ultimas-noticias" target="_blank">https://www.ecuavisa.com/ultimas-noticias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Lo último</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/ultimas-noticias</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">138</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">162</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Lo último</span>
+<span class="tag"><strong>H2:</strong> La política de precios a los combustibles está agotada</span>
+<span class="tag"><strong>H2:</strong> ¿Sabías qué los trastornos musculoesqueléticos afectan a ...</span>
+<span class="tag"><strong>H2:</strong> Video | Una cámara captó desde dentro del cráter la impre...</span>
+<span class="tag"><strong>H2:</strong> Kylian Mbappé: &quot;Es muy importante seguir por este camino&quot;</span>
+<span class="tag"><strong>H2:</strong> La Judicatura y el Ministerio del Interior desliegan plan...</span>
+<span class="tag"><strong>H2:</strong> Nueve presuntos miembros de Los Águilas fueron capturados...</span>
+<span class="tag"><strong>H2:</strong> Mbappé igualó a Messi como máximo goleador del Mundial 2026</span>
+<span class="tag"><strong>H2:</strong> Revés legal para Bad Bunny: Tribunal Supremo de Puerto Ri...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>3. <a href="https://www.ecuavisa.com/noticias" target="_blank">https://www.ecuavisa.com/noticias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Noticias</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/noticias</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">4</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">24</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">40</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Múltiples H1 (4 encontrados). Se recomienda solo un H1 por página.</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Noticias</span>
+<span class="tag"><strong>H1:</strong> La Noticia a Fondo</span>
+<span class="tag"><strong>H1:</strong> Informativos</span>
+<span class="tag"><strong>H1:</strong> Más noticias</span>
+<span class="tag"><strong>H2:</strong> El mecanismo de protección para periodistas en Ecuador op...</span>
+<span class="tag"><strong>H2:</strong> Caso Segura EP: Fernando Cornejo niega red de espionaje y...</span>
+<span class="tag"><strong>H2:</strong> La Policía halló cocaína oculta en falsos chupetes en Cuenca</span>
+<span class="tag"><strong>H2:</strong> China restringe exportaciones de varias plantas camaroner...</span>
+<span class="tag"><strong>H2:</strong> La Judicatura y el Ministerio del Interior desliegan plan...</span>
+<span class="tag"><strong>H2:</strong> Nueve presuntos miembros de Los Águilas fueron capturados...</span>
+<span class="tag"><strong>H2:</strong> Supuestos compañeros de trabajo de Santiago Ávalos fueron...</span>
+<span class="tag"><strong>H2:</strong> Romina Muñoz renuncia al Viceministerio de Cultura</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>4. <a href="https://www.ecuavisa.com/mundo" target="_blank">https://www.ecuavisa.com/mundo</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | mundo</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/mundo</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">4</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">24</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">40</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Múltiples H1 (4 encontrados). Se recomienda solo un H1 por página.</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Mundo</span>
+<span class="tag"><strong>H1:</strong> Informativos</span>
+<span class="tag"><strong>H1:</strong> Ecuador</span>
+<span class="tag"><strong>H1:</strong> No te pierdas</span>
+<span class="tag"><strong>H2:</strong> Senado de Paraguay condenó los comentarios racistas de la...</span>
+<span class="tag"><strong>H2:</strong> Rescatistas encuentran sin vida a Lucas, el niño argentin...</span>
+<span class="tag"><strong>H2:</strong> Más de 5 800 detenidos en un operativo internacional de I...</span>
+<span class="tag"><strong>H2:</strong> Keir Starmer y Jonas Gahr Støre protagonizan un amistoso ...</span>
+<span class="tag"><strong>H2:</strong> México | Gobernador de Sinaloa, acusado de narcotraficant...</span>
+<span class="tag"><strong>H2:</strong> Suben a 3 899 los muertos por el doble terremoto que sacu...</span>
+<span class="tag"><strong>H2:</strong> Ola de calor: Alrededor de 300 millones de personas fuero...</span>
+<span class="tag"><strong>H2:</strong> Japón: Una mujer fue detenida por presuntamente coserle l...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>5. <a href="https://www.ecuavisa.com/deportes" target="_blank">https://www.ecuavisa.com/deportes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Deportes, Fútbol Ecuatoriano y Selección de Ecuador | Ecuavisa</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/deportes</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">65</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">93</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val warn">10</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-error">No hay H1 en la página</li>
+</ul>
+
+    <p style="margin-top:1rem"><strong>🖼️ Imágenes sin alt text (10)</strong></p>
+    <ol class="img-list">
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/newsletter.svg" target="_blank">newsletter.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/tricolores%20sobre%20ruedas.svg" target="_blank">tricolores%20sobre%20ruedas.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/El%20Chiringuito.svg" target="_blank">El%20Chiringuito.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/de%20Jugones.svg" target="_blank">de%20Jugones.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/lo%20m%C3%A1s%20visto.svg" target="_blank">lo%20m%C3%A1s%20visto.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/ESTADIO.svg" target="_blank">ESTADIO.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/m%C3%A1s%20temas.svg" target="_blank">m%C3%A1s%20temas.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/ESTADIO.svg" target="_blank">ESTADIO.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/noteazuloscuro.svg" target="_blank">noteazuloscuro.svg</a></li>
+<li><a href="https://estadisticas.ecuavisa.com/sites/gestor/2026/pierdas.svg" target="_blank">pierdas.svg</a></li>
+</ol>
+
+  </div>
+
+  <div class="detail">
+    <h3>6. <a href="https://www.ecuavisa.com/entretenimiento" target="_blank">https://www.ecuavisa.com/entretenimiento</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Entretenimiento</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/entretenimiento</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">5</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">24</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">40</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Múltiples H1 (5 encontrados). Se recomienda solo un H1 por página.</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Entretenimiento</span>
+<span class="tag"><strong>H1:</strong> Televisión</span>
+<span class="tag"><strong>H1:</strong> En Contacto</span>
+<span class="tag"><strong>H1:</strong> Los Hackers Del Espectáculo</span>
+<span class="tag"><strong>H1:</strong> No te pierdas</span>
+<span class="tag"><strong>H2:</strong> Holding Out for a Hero: La canción de Bonnie Tyler que in...</span>
+<span class="tag"><strong>H2:</strong> Alejandra Jaramillo ofrece disculpas a México tras celebr...</span>
+<span class="tag"><strong>H2:</strong> Revés legal para Bad Bunny: Tribunal Supremo de Puerto Ri...</span>
+<span class="tag"><strong>H2:</strong> Terry Crews quiere recrear la viral escena de ¿Y dónde es...</span>
+<span class="tag"><strong>H2:</strong> El día que Bob Dylan enfureció a Vargas Llosa: 10 años de...</span>
+<span class="tag"><strong>H2:</strong> U2 estrena Street of Dreams el primer adelanto de su nuev...</span>
+<span class="tag"><strong>H2:</strong> El actor Matt Damon revela que Lionel Messi es un héroe p...</span>
+<span class="tag"><strong>H2:</strong> Nintendo anuncia el cierre de Mario Kart Tour y descarta ...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>7. <a href="https://www.ecuavisa.com/tendencias" target="_blank">https://www.ecuavisa.com/tendencias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Tendencias</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/tendencias</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">4</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">32</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">9</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">38</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p><strong>⚠️ Issues</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">Múltiples H1 (4 encontrados). Se recomienda solo un H1 por página.</li>
+</ul>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Estilo</span>
+<span class="tag"><strong>H1:</strong> Salud</span>
+<span class="tag"><strong>H1:</strong> Redes</span>
+<span class="tag"><strong>H1:</strong> Más temas estilo</span>
+<span class="tag"><strong>H2:</strong> Ed Sheeran ofrece concierto privado a la selección de Ing...</span>
+<span class="tag"><strong>H2:</strong> El fenómeno del 8 de julio: ¿por qué casi toda la poblaci...</span>
+<span class="tag"><strong>H2:</strong> X apuesta por el contenido original con nuevas funciones ...</span>
+<span class="tag"><strong>H2:</strong> OpenAI anunció el lanzamiento de su nueva serie de modelo...</span>
+<span class="tag"><strong>H2:</strong> ¿Sabías qué los trastornos musculoesqueléticos afectan a ...</span>
+<span class="tag"><strong>H2:</strong> Video | Una cámara captó desde dentro del cráter la impre...</span>
+<span class="tag"><strong>H2:</strong> Un niño leyó la Biblia durante la remontada de Argentina ...</span>
+<span class="tag"><strong>H2:</strong> ¿Qué son los matrimonios lavanda y por qué son tendencia ...</span>
+</div>
+
+  </div>
+
+  <div class="detail">
+    <h3>8. <a href="https://www.ecuavisa.com/programas" target="_blank">https://www.ecuavisa.com/programas</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">Ecuavisa | Programas</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">https://www.ecuavisa.com/programas</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">1</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">8</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">17</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">85</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+<p style="margin-top:1rem"><strong>Headings destacados</strong></p>
+    <div class="heading-list">
+<span class="tag"><strong>H1:</strong> Programas</span>
+<span class="tag"><strong>H2:</strong> Comunidad Quito</span>
+<span class="tag"><strong>H2:</strong> Comunidad Guayaquil</span>
+<span class="tag"><strong>H2:</strong> Contacto Directo</span>
+<span class="tag"><strong>H2:</strong> Televistazo 1PM</span>
+<span class="tag"><strong>H2:</strong> Televistazo 7PM</span>
+<span class="tag"><strong>H2:</strong> Televistazo Sábado</span>
+<span class="tag"><strong>H2:</strong> Televistazo Dominical</span>
+<span class="tag"><strong>H2:</strong> Políticamente Correcto</span>
+</div>
+
+  </div>
+
+  <div class="footer">Reporte generado por Ecuavisa el 2026-07-10T00:39:08.284Z</div>
+</div>
+</body>
+</html>

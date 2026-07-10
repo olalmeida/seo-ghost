@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte SEO - seo-ghost</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+  h1 small { font-size: 1rem; color: #666; font-weight: 400; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 10px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .num { font-size: 2rem; font-weight: 700; }
+  .card .label { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+  .ok { color: #22c55e; }
+  .warn { color: #f59e0b; }
+  .err { color: #ef4444; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+  th { background: #f8fafc; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-success { background: #dcfce7; color: #15803d; }
+  .badge-warning { background: #fef3c7; color: #b45309; }
+  .badge-error { background: #fee2e2; color: #b91c1c; }
+  .detail { background: #fff; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .detail h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .detail-grid .item { }
+  .detail-grid .item .val { font-size: 1.1rem; font-weight: 600; }
+  .detail-grid .item .lbl { font-size: 0.8rem; color: #666; }
+  .img-list { list-style: none; padding: 0; }
+  .img-list li { padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; word-break: break-all; }
+  .img-list li:last-child { border: none; }
+  .img-list a { color: #2563eb; text-decoration: none; }
+  .img-list a:hover { text-decoration: underline; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 0.35rem 0.75rem; margin: 0.25rem 0; border-radius: 6px; font-size: 0.85rem; }
+  .issue-list .issue-error { background: #fee2e2; color: #b91c1c; }
+  .issue-list .issue-warn { background: #fef3c7; color: #b45309; }
+  .heading-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .heading-list .tag { background: #eef2ff; color: #4338ca; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  .footer { text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+  @media (max-width: 768px) { body { padding: 1rem; } .summary-cards { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Ecuavisa <small>Reporte de Metadata SEO</small></h1>
+  <p class="subtitle">9/7/2026, 8:54:31 p. m.</p>
+
+  <div class="summary-cards">
+    <div class="card"><div class="num ok">35</div><div class="label">URLs procesadas</div></div>
+    <div class="card"><div class="num ok">35</div><div class="label">Exitosas</div></div>
+    <div class="card"><div class="num ok">0</div><div class="label">Con errores</div></div>
+  </div>
+
+  <h2>📊 Resumen General</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>URL</th><th>Status</th><th>Title</th><th>H1</th><th>H2</th><th>H3</th><th>Img</th><th>Sin Alt</th><th>Issues</th><th>A11y</th>
+    </tr></thead>
+    <tbody>
+
+      <tr>
+        <td>1</td>
+        <td><a href="https://www.ecuavisa.com/?_cb=1783648179762" target="_blank" title="https://www.ecuavisa.com/?_cb=1783648179762">www.ecuavisa.com/</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">5</span></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="https://www.ecuavisa.com/ultimas-noticias?_cb=1783648188234" target="_blank" title="https://www.ecuavisa.com/ultimas-noticias?_cb=1783648188234">www.ecuavisa.com/ultimas-noticias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">4</span></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="https://www.ecuavisa.com/noticias?_cb=1783648196414" target="_blank" title="https://www.ecuavisa.com/noticias?_cb=1783648196414">www.ecuavisa.com/noticias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td><a href="https://www.ecuavisa.com/mundo?_cb=1783648203990" target="_blank" title="https://www.ecuavisa.com/mundo?_cb=1783648203990">www.ecuavisa.com/mundo</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td><a href="https://www.ecuavisa.com/deportes?_cb=1783648211652" target="_blank" title="https://www.ecuavisa.com/deportes?_cb=1783648211652">www.ecuavisa.com/deportes</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">6</span></td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento?_cb=1783648219928" target="_blank" title="https://www.ecuavisa.com/entretenimiento?_cb=1783648219928">www.ecuavisa.com/entretenimiento</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>7</td>
+        <td><a href="https://www.ecuavisa.com/tendencias?_cb=1783648227777" target="_blank" title="https://www.ecuavisa.com/tendencias?_cb=1783648227777">www.ecuavisa.com/tendencias</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>8</td>
+        <td><a href="https://www.ecuavisa.com/programas?_cb=1783648235311" target="_blank" title="https://www.ecuavisa.com/programas?_cb=1783648235311">www.ecuavisa.com/programas</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>9</td>
+        <td><a href="https://www.ecuavisa.com/la-noticia-a-fondo?_cb=1783648243375" target="_blank" title="https://www.ecuavisa.com/la-noticia-a-fondo?_cb=1783648243375">www.ecuavisa.com/la-noticia-a-fondo</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">5</span></td>
+      </tr>
+
+      <tr>
+        <td>10</td>
+        <td><a href="https://www.ecuavisa.com/noticias/ecuador?_cb=1783648250717" target="_blank" title="https://www.ecuavisa.com/noticias/ecuador?_cb=1783648250717">www.ecuavisa.com/noticias/ecuador</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>11</td>
+        <td><a href="https://www.ecuavisa.com/noticias/quito?_cb=1783648259146" target="_blank" title="https://www.ecuavisa.com/noticias/quito?_cb=1783648259146">www.ecuavisa.com/noticias/quito</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>12</td>
+        <td><a href="https://www.ecuavisa.com/noticias/guayaquil?_cb=1783648267914" target="_blank" title="https://www.ecuavisa.com/noticias/guayaquil?_cb=1783648267914">www.ecuavisa.com/noticias/guayaquil</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>13</td>
+        <td><a href="https://www.ecuavisa.com/noticias/politica?_cb=1783648276256" target="_blank" title="https://www.ecuavisa.com/noticias/politica?_cb=1783648276256">www.ecuavisa.com/noticias/politica</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>14</td>
+        <td><a href="https://www.ecuavisa.com/noticias/economia?_cb=1783648285196" target="_blank" title="https://www.ecuavisa.com/noticias/economia?_cb=1783648285196">www.ecuavisa.com/noticias/economia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>15</td>
+        <td><a href="https://www.ecuavisa.com/noticias/seguridad?_cb=1783648294000" target="_blank" title="https://www.ecuavisa.com/noticias/seguridad?_cb=1783648294000">www.ecuavisa.com/noticias/seguridad</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>16</td>
+        <td><a href="https://www.ecuavisa.com/noticias/sociedad?_cb=1783648301831" target="_blank" title="https://www.ecuavisa.com/noticias/sociedad?_cb=1783648301831">www.ecuavisa.com/noticias/sociedad</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>17</td>
+        <td><a href="https://www.ecuavisa.com/deportes/futbol-nacional?_cb=1783648309865" target="_blank" title="https://www.ecuavisa.com/deportes/futbol-nacional?_cb=1783648309865">www.ecuavisa.com/deportes/futbol-naciona</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>18</td>
+        <td><a href="https://www.ecuavisa.com/deportes/futbol-internacional?_cb=1783648318320" target="_blank" title="https://www.ecuavisa.com/deportes/futbol-internacional?_cb=1783648318320">www.ecuavisa.com/deportes/futbol-interna</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>19</td>
+        <td><a href="https://www.ecuavisa.com/deportes/otros-deportes?_cb=1783648326269" target="_blank" title="https://www.ecuavisa.com/deportes/otros-deportes?_cb=1783648326269">www.ecuavisa.com/deportes/otros-deportes</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>20</td>
+        <td><a href="https://www.ecuavisa.com/piso-17?_cb=1783648334262" target="_blank" title="https://www.ecuavisa.com/piso-17?_cb=1783648334262">www.ecuavisa.com/piso-17</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>21</td>
+        <td><a href="https://www.ecuavisa.com/el-chiringuito-de-jugones-en-vivo?_cb=1783648343129" target="_blank" title="https://www.ecuavisa.com/el-chiringuito-de-jugones-en-vivo?_cb=1783648343129">www.ecuavisa.com/el-chiringuito-de-jugon</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>22</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/musica?_cb=1783648349684" target="_blank" title="https://www.ecuavisa.com/entretenimiento/musica?_cb=1783648349684">www.ecuavisa.com/entretenimiento/musica</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>23</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/cine?_cb=1783648359034" target="_blank" title="https://www.ecuavisa.com/entretenimiento/cine?_cb=1783648359034">www.ecuavisa.com/entretenimiento/cine</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>24</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/television?_cb=1783648367184" target="_blank" title="https://www.ecuavisa.com/entretenimiento/television?_cb=1783648367184">www.ecuavisa.com/entretenimiento/televis</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>25</td>
+        <td><a href="https://www.ecuavisa.com/entretenimiento/gaming?_cb=1783648375079" target="_blank" title="https://www.ecuavisa.com/entretenimiento/gaming?_cb=1783648375079">www.ecuavisa.com/entretenimiento/gaming</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>26</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/tecnologia?_cb=1783648382951" target="_blank" title="https://www.ecuavisa.com/tendencias/tecnologia?_cb=1783648382951">www.ecuavisa.com/tendencias/tecnologia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>27</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/ciencia?_cb=1783648391100" target="_blank" title="https://www.ecuavisa.com/tendencias/ciencia?_cb=1783648391100">www.ecuavisa.com/tendencias/ciencia</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>28</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/salud?_cb=1783648400046" target="_blank" title="https://www.ecuavisa.com/tendencias/salud?_cb=1783648400046">www.ecuavisa.com/tendencias/salud</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>29</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/redes?_cb=1783648409712" target="_blank" title="https://www.ecuavisa.com/tendencias/redes?_cb=1783648409712">www.ecuavisa.com/tendencias/redes</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">2</span></td>
+      </tr>
+
+      <tr>
+        <td>30</td>
+        <td><a href="https://www.ecuavisa.com/tendencias/curiosidades?_cb=1783648418930" target="_blank" title="https://www.ecuavisa.com/tendencias/curiosidades?_cb=1783648418930">www.ecuavisa.com/tendencias/curiosidades</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-error">4</span></td>
+      </tr>
+
+      <tr>
+        <td>31</td>
+        <td><a href="https://www.ecuavisa.com/ecuaterra?_cb=1783648429096" target="_blank" title="https://www.ecuavisa.com/ecuaterra?_cb=1783648429096">www.ecuavisa.com/ecuaterra</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>32</td>
+        <td><a href="https://www.ecuavisa.com/programas/informativos?_cb=1783648436708" target="_blank" title="https://www.ecuavisa.com/programas/informativos?_cb=1783648436708">www.ecuavisa.com/programas/informativos</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>33</td>
+        <td><a href="https://www.ecuavisa.com/programas/entretenimiento?_cb=1783648445595" target="_blank" title="https://www.ecuavisa.com/programas/entretenimiento?_cb=1783648445595">www.ecuavisa.com/programas/entretenimien</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">4</span></td>
+      </tr>
+
+      <tr>
+        <td>34</td>
+        <td><a href="https://www.ecuavisa.com/cholito-forever?_cb=1783648454228" target="_blank" title="https://www.ecuavisa.com/cholito-forever?_cb=1783648454228">www.ecuavisa.com/cholito-forever</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+      <tr>
+        <td>35</td>
+        <td><a href="https://www.ecuavisa.com/televistazo/especiales-reportajes?_cb=1783648462494" target="_blank" title="https://www.ecuavisa.com/televistazo/especiales-reportajes?_cb=1783648462494">www.ecuavisa.com/televistazo/especiales-</a></td>
+        <td><span class="badge badge-success">200</span></td>
+        <td>(sin title)</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0/0</td>
+        <td>0</td>
+        <td><span class="badge badge-success">0</span></td>
+        <td><span class="badge badge-warning">3</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h2>🔍 Resultados Detallados</h2>
+
+  <div class="detail">
+    <h3>1. <a href="https://www.ecuavisa.com/" target="_blank">https://www.ecuavisa.com/</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (5 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🔵 <strong>empty-heading</strong>: Headings should not be empty (1 elementos) — <code>div:nth-child(7) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_titleContent__EGpjd[data-after=&quot;false&quot;] &gt; a[rel=&quot;noopener noreferrer&quot;][target=&quot;_blank&quot;] &gt; .styles_title__RLAQr</code></li>
+<li class="issue-warn">🟡 <strong>heading-order</strong>: Heading levels should only increase by one (1 elementos) — <code>.styles_accordionStyled__OmWsf:nth-child(1) &gt; h3</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (9 elementos) — <code>div:nth-child(5) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_readMoreContainer__uHFhL &gt; .styles_contentViewMore__IJtXy &gt; .styles_readMore___LrCL[rel=&quot;noopener noreferrer&quot;][target=&quot;_blank&quot;]</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (119 elementos) — <code>.container_full_width-mundial</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>2. <a href="https://www.ecuavisa.com/ultimas-noticias" target="_blank">https://www.ecuavisa.com/ultimas-noticias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>aria-command-name</strong>: ARIA commands must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/ecuavisa\.com\/section_mobile_middle_1_0</code></li>
+<li class="issue-warn">🟠 <strong>color-contrast</strong>: Elements must meet minimum color contrast ratio thresholds (9 elementos) — <code>.styles_ItemCustomContent__0JVwO:nth-child(2) &gt; .styles_content__BN_S9 &gt; .styles_newsDescription__F_uk_ &gt; .styles_boxInformation__rg6ZC &gt; .styles_sectionDescriptionContainer__ZY2At &gt; .depor.styles_sectionDescriptionSport__CgtTM[href$=&quot;futbol-nacional&quot;]</code></li>
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/ecuavisa\.com\/section_mobile_middle_1_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (184 elementos) — <code>#google_ads_iframe_\/49542283\/ecuavisa\.com\/section_mobile_middle_1_0</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>3. <a href="https://www.ecuavisa.com/noticias" target="_blank">https://www.ecuavisa.com/noticias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (3 elementos) — <code>.styles_readMore___LrCL</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (83 elementos) — <code>div:nth-child(1) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_titleContent__EGpjd[data-after=&quot;false&quot;] &gt; h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>4. <a href="https://www.ecuavisa.com/mundo" target="_blank">https://www.ecuavisa.com/mundo</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (3 elementos) — <code>.styles_readMore___LrCL</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (82 elementos) — <code>div:nth-child(1) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_titleContent__EGpjd[data-after=&quot;false&quot;] &gt; h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>5. <a href="https://www.ecuavisa.com/deportes" target="_blank">https://www.ecuavisa.com/deportes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (6 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🔵 <strong>empty-heading</strong>: Headings should not be empty (6 elementos) — <code>.container-news.container_full_width:nth-child(7) &gt; .container &gt; .titulo-news &gt; h2</code></li>
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>heading-order</strong>: Heading levels should only increase by one (1 elementos) — <code>.deportes-seccion-1 &gt; .container &gt; .block-principal &gt; article &gt; .styles_newsDescription__vOiGA &gt; .styles_boxInformation__be9Lw &gt; .styles_articule__Mx4a2</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>.titulo-news &gt; a</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (47 elementos) — <code>.Equipos_ligapro_container</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>6. <a href="https://www.ecuavisa.com/entretenimiento" target="_blank">https://www.ecuavisa.com/entretenimiento</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (5 elementos) — <code>.styles_readMore___LrCL[href$=&quot;encontacto&quot;]</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (83 elementos) — <code>div:nth-child(1) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_titleContent__EGpjd[data-after=&quot;false&quot;] &gt; h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>7. <a href="https://www.ecuavisa.com/tendencias" target="_blank">https://www.ecuavisa.com/tendencias</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (1 elementos) — <code>#google_ads_iframe_\/49542283\/ecuavisa\.com\/section_mobile_middle_1_0</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (2 elementos) — <code>html</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (1 elementos) — <code>#google_ads_iframe_\/49542283\/ecuavisa\.com\/section_mobile_middle_1_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (92 elementos) — <code>div:nth-child(1) &gt; .home-slot &gt; .styles_content__pvRL2 &gt; .styles_titleContent__EGpjd[data-after=&quot;false&quot;] &gt; h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>8. <a href="https://www.ecuavisa.com/programas" target="_blank">https://www.ecuavisa.com/programas</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (10 elementos) — <code>div:nth-child(1) &gt; div:nth-child(1) &gt; div:nth-child(4) &gt; .styles_readMoreContainer__1HRxT &gt; .styles_readMore__jRWqP</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (180 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>9. <a href="https://www.ecuavisa.com/la-noticia-a-fondo" target="_blank">https://www.ecuavisa.com/la-noticia-a-fondo</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (5 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>heading-order</strong>: Heading levels should only increase by one (1 elementos) — <code>.items1x &gt; div &gt; .item-noticias &gt; .listado-noticias &gt; article &gt; .mediablock &gt; .styles_newsDescription__DOf6m.text-block &gt; .styles_boxInformation__PFgaQ &gt; .styles_articule__5GPLW</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (21 elementos) — <code>#content-layout &gt; div:nth-child(2) &gt; div:nth-child(1)</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>10. <a href="https://www.ecuavisa.com/noticias/ecuador" target="_blank">https://www.ecuavisa.com/noticias/ecuador</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>11. <a href="https://www.ecuavisa.com/noticias/quito" target="_blank">https://www.ecuavisa.com/noticias/quito</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (3 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (50 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>12. <a href="https://www.ecuavisa.com/noticias/guayaquil" target="_blank">https://www.ecuavisa.com/noticias/guayaquil</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>13. <a href="https://www.ecuavisa.com/noticias/politica" target="_blank">https://www.ecuavisa.com/noticias/politica</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>14. <a href="https://www.ecuavisa.com/noticias/economia" target="_blank">https://www.ecuavisa.com/noticias/economia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>15. <a href="https://www.ecuavisa.com/noticias/seguridad" target="_blank">https://www.ecuavisa.com/noticias/seguridad</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>16. <a href="https://www.ecuavisa.com/noticias/sociedad" target="_blank">https://www.ecuavisa.com/noticias/sociedad</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>color-contrast</strong>: Elements must meet minimum color contrast ratio thresholds (1 elementos) — <code>.depor</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>17. <a href="https://www.ecuavisa.com/deportes/futbol-nacional" target="_blank">https://www.ecuavisa.com/deportes/futbol-nacional</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>color-contrast</strong>: Elements must meet minimum color contrast ratio thresholds (46 elementos) — <code>h1 &gt; div</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (68 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>18. <a href="https://www.ecuavisa.com/deportes/futbol-internacional" target="_blank">https://www.ecuavisa.com/deportes/futbol-internacional</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>color-contrast</strong>: Elements must meet minimum color contrast ratio thresholds (46 elementos) — <code>h1 &gt; div</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (56 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>19. <a href="https://www.ecuavisa.com/deportes/otros-deportes" target="_blank">https://www.ecuavisa.com/deportes/otros-deportes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>color-contrast</strong>: Elements must meet minimum color contrast ratio thresholds (49 elementos) — <code>h1 &gt; div</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>20. <a href="https://www.ecuavisa.com/piso-17" target="_blank">https://www.ecuavisa.com/piso-17</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>page-has-heading-one</strong>: Page should contain a level-one heading (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (54 elementos) — <code>.piso17_titulo</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>21. <a href="https://www.ecuavisa.com/el-chiringuito-de-jugones-en-vivo" target="_blank">https://www.ecuavisa.com/el-chiringuito-de-jugones-en-vivo</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>page-has-heading-one</strong>: Page should contain a level-one heading (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (7 elementos) — <code>.header_chiringuito</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>22. <a href="https://www.ecuavisa.com/entretenimiento/musica" target="_blank">https://www.ecuavisa.com/entretenimiento/musica</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>23. <a href="https://www.ecuavisa.com/entretenimiento/cine" target="_blank">https://www.ecuavisa.com/entretenimiento/cine</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>24. <a href="https://www.ecuavisa.com/entretenimiento/television" target="_blank">https://www.ecuavisa.com/entretenimiento/television</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>25. <a href="https://www.ecuavisa.com/entretenimiento/gaming" target="_blank">https://www.ecuavisa.com/entretenimiento/gaming</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>26. <a href="https://www.ecuavisa.com/tendencias/tecnologia" target="_blank">https://www.ecuavisa.com/tendencias/tecnologia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>27. <a href="https://www.ecuavisa.com/tendencias/ciencia" target="_blank">https://www.ecuavisa.com/tendencias/ciencia</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>28. <a href="https://www.ecuavisa.com/tendencias/salud" target="_blank">https://www.ecuavisa.com/tendencias/salud</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>29. <a href="https://www.ecuavisa.com/tendencias/redes" target="_blank">https://www.ecuavisa.com/tendencias/redes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (2 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (48 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>30. <a href="https://www.ecuavisa.com/tendencias/curiosidades" target="_blank">https://www.ecuavisa.com/tendencias/curiosidades</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟠 <strong>frame-title</strong>: Frames must have an accessible name (1 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-error">🔴 <strong>image-alt</strong>: Images must have alternative text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (2 elementos) — <code>#google_ads_iframe_\/49542283\/section_mobile_anchor_0</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (51 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>31. <a href="https://www.ecuavisa.com/ecuaterra" target="_blank">https://www.ecuavisa.com/ecuaterra</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>page-has-heading-one</strong>: Page should contain a level-one heading (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (41 elementos) — <code>.item-portada &gt; .noticias &gt; article &gt; .mediablock &gt; .styles_image__bcKhZ.multimedia</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>32. <a href="https://www.ecuavisa.com/programas/informativos" target="_blank">https://www.ecuavisa.com/programas/informativos</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (8 elementos) — <code>div:nth-child(1) &gt; div:nth-child(1) &gt; div:nth-child(4) &gt; .styles_readMoreContainer__1HRxT &gt; .styles_readMore__jRWqP</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (177 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>33. <a href="https://www.ecuavisa.com/programas/entretenimiento" target="_blank">https://www.ecuavisa.com/programas/entretenimiento</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (4 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🔵 <strong>empty-heading</strong>: Headings should not be empty (7 elementos) — <code>div:nth-child(1) &gt; div:nth-child(1) &gt; .styles_description__L9Ds5</code></li>
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟠 <strong>link-name</strong>: Links must have discernible text (7 elementos) — <code>a[href$=&quot;encontacto&quot;]</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (144 elementos) — <code>h1</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>34. <a href="https://www.ecuavisa.com/cholito-forever" target="_blank">https://www.ecuavisa.com/cholito-forever</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>page-has-heading-one</strong>: Page should contain a level-one heading (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (28 elementos) — <code>.style_bannerMobile__bJkZf</code></li>
+</ul>
+
+  </div>
+
+  <div class="detail">
+    <h3>35. <a href="https://www.ecuavisa.com/televistazo/especiales-reportajes" target="_blank">https://www.ecuavisa.com/televistazo/especiales-reportajes</a></h3>
+    <div class="detail-grid">
+      <div class="item"><div class="val">200</div><div class="lbl">Status Code</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Meta Title</div></div>
+      <div class="item"><div class="val">—</div><div class="lbl">Canonical</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H1</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H2</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">H3</div></div>
+      <div class="item"><div class="val">0</div><div class="lbl">Total imágenes</div></div>
+      <div class="item"><div class="val ok">0</div><div class="lbl">Sin alt text</div></div>
+    </div>
+
+    <p style="margin-top:1rem"><strong>♿ Accesibilidad (3 violaciones)</strong></p>
+    <ul class="issue-list">
+<li class="issue-warn">🟡 <strong>landmark-one-main</strong>: Document should have one main landmark (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>page-has-heading-one</strong>: Page should contain a level-one heading (1 elementos) — <code>html</code></li>
+<li class="issue-warn">🟡 <strong>region</strong>: All page content should be contained by landmarks (92 elementos) — <code>.BannerDerecha_containerMobile__DQMfB.container-banner:nth-child(2)</code></li>
+</ul>
+
+  </div>
+
+  <div class="footer">Reporte generado por Ecuavisa el 2026-07-10T01:54:31.493Z</div>
+</div>
+</body>
+</html>
