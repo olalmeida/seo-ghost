@@ -22,7 +22,7 @@ soporte de paginación, lazy loading, carousels, y auditoría axe-core.
 ## 📦 Instalación
 
 ```bash
-git clone https://github.com/tuusuario/seo-ghost.git
+git clone https://github.com/olalmeida/seo-ghost.git
 cd seo-ghost
 npm install
 npx playwright install chromium
