@@ -1,4 +1,49 @@
 /**
+ * Categoría de alt text para una imagen.
+ * - descriptive: alt descriptivo y válido
+ * - generic: alt con texto plano/genérico (foto, IMG_001.jpg, etc.)
+ * - empty: alt="" o alt sin valor (decorativa intencional)
+ * - missing: no existe atributo alt
+ */
+export type AltCategory = 'descriptive' | 'generic' | 'empty' | 'bare' | 'missing';
+
+/**
+ * Análisis individual de una imagen en la página.
+ */
+export interface ImageAnalysis {
+  /** URL absoluta de la imagen */
+  src: string;
+  /** Contenido del atributo alt (puede ser "") */
+  alt: string;
+  /** Categoría de alt detectada */
+  category: AltCategory;
+}
+
+/**
+ * Imagen de fondo CSS (background-image).
+ */
+export interface BgImageAnalysis {
+  /** URL de la imagen de fondo */
+  src: string;
+  /** Alt asociado (aria-label, title o texto cercano) */
+  alt: string;
+  /** Selector/elemento que contiene la imagen */
+  element: string;
+}
+
+/**
+ * Fuente alternativa de un <picture> con su media query.
+ */
+export interface PictureSourceAnalysis {
+  /** URL de la imagen en source/srcset */
+  src: string;
+  /** Media query asociada (ej: "(max-width: 768px)") */
+  media: string;
+  /** Alt del <img> dentro del <picture> */
+  alt: string;
+}
+
+/**
  * Resultado SEO extraído por cada URL procesada.
  */
 export interface SeoResult {
@@ -8,8 +53,25 @@ export interface SeoResult {
   statusCode: number | null;
   /** Contenido de la etiqueta <title> */
   metaTitle: string | null;
+  /** Contenido de <meta name="description"> */
+  metaDescription: string | null;
   /** Valor del href en <link rel="canonical"> */
   canonical: string | null;
+  /** Contenido de <meta name="robots"> (noindex, nofollow, etc.) */
+  metaRobots: string | null;
+
+  // ─── Open Graph ────────────────────────────────────────────────
+  ogTitle: string | null;
+  ogDescription: string | null;
+  ogImage: string | null;
+  ogUrl: string | null;
+  ogType: string | null;
+
+  // ─── Twitter Cards ─────────────────────────────────────────────
+  twitterCard: string | null;
+  twitterTitle: string | null;
+  twitterDescription: string | null;
+  twitterImage: string | null;
 
   // ─── Headings ──────────────────────────────────────────────────
   /** Array con el texto de todas las etiquetas <h1> */
@@ -34,12 +96,34 @@ export interface SeoResult {
   imagesWithoutAlt: number;
   /** Lista de URLs (src) de imágenes que no tienen alt */
   imagesWithoutAltList: string[];
+  /** Análisis completo de todas las imágenes con categorización */
+  images: ImageAnalysis[];
+  /** Imágenes de fondo CSS background-image */
+  backgroundImages?: BgImageAnalysis[];
+  /** Fuentes de <picture> con media queries */
+  pictureSources?: PictureSourceAnalysis[];
+  /** Total de imágenes de fondo */
+  totalBgImages?: number;
+
+  // ─── Contenido ──────────────────────────────────────────────────
+  /** Cantidad de palabras del contenido visible */
+  wordCount: number;
+  /** Cantidad de párrafos (<p>) en el DOM */
+  paragraphCount: number;
 
     // ─── Accesibilidad (axe-core) ─────────────────────────────────
   /** Resultados de auditoría de accesibilidad con axe-core (solo si --a11y) */
   axeViolations?: AxeViolation[];
   /** Cantidad total de violaciones de accesibilidad */
   axeViolationCount?: number;
+
+  // ─── Structured Data (JSON-LD) ────────────────────────────────
+  /** Bloques de structured data encontrados */
+  structuredData: StructuredDataItem[];
+  /** Cantidad total de bloques JSON-LD */
+  structuredDataCount: number;
+  /** Cantidad de bloques JSON-LD válidos */
+  structuredDataValid: number;
 
   /** Mensaje de error si falló la URL (undefined si OK) */
   error?: string;
@@ -93,8 +177,55 @@ export interface ScrapeOptions {
   cacheBuster?: boolean;
   /** Máximo de páginas a recorrer en listados paginados (default: 1 = sin paginación) */
   maxPages?: number;
+  /** Ejecutar extracción SEO (default: true; poner false para solo a11y) */
+  runSeo?: boolean;
   /** Ejecutar auditoría de accesibilidad con axe-core en cada página */
   runAxe?: boolean;
+  /** Ruta para guardar checkpoints (default: no checkpoint) */
+  checkpointPath?: string;
+  /** Guardar checkpoint cada N URLs (default: 10) */
+  checkpointEvery?: number;
+  /** Resultados existentes para reanudar */
+  existingResults?: SeoResult[];
+  /** Índice desde el cual reanudar (0-based) */
+  startIndex?: number;
+  /** Número de workers concurrentes (default: 1). Cada worker usa su propio context. */
+  concurrency?: number;
+  /** HTML original de la respuesta HTTP (antes del parseo del browser) */
+  rawHtml?: string;
+}
+
+// ─── Structured Data (JSON-LD) ───────────────────────────────────
+
+/**
+ * Un bloque individual de JSON-LD encontrado en la página.
+ */
+export interface StructuredDataItem {
+  /** JSON raw (minificado) */
+  raw: string;
+  /** Tipo(s) detectados (@type) */
+  types: string[];
+  /** Si el JSON es válido */
+  valid: boolean;
+  /** Mensaje de error si no se pudo parsear */
+  error?: string;
+}
+
+// ─── Checkpoint ──────────────────────────────────────────────────
+
+/**
+ * Checkpoint guardado durante el scraping para permitir reanudar
+ * ejecuciones interrumpidas.
+ */
+export interface Checkpoint {
+  /** Lista original de URLs (completa) */
+  urls: string[];
+  /** Resultados procesados hasta el momento */
+  results: SeoResult[];
+  /** Próximo índice a procesar (0-based) */
+  nextIndex: number;
+  /** Timestamp del último guardado */
+  timestamp: string;
 }
 
 /**
@@ -131,12 +262,30 @@ export interface CliArgs {
   googlebot?: boolean;
   /** Desactivar cache buster */
   noCacheBuster?: boolean;
-  /** Formato de salida: json, md, both */
+  /** Formato de salida: json, md, csv, both */
   format?: string;
+  /** Reanudar desde el último checkpoint */
+  resume?: boolean;
+  /** Guardar checkpoint cada N URLs */
+  checkpointEvery?: number;
+  /** Concurrencia: workers en paralelo (default: 1) */
+  concurrency?: number;
   /** Modo verbose */
   verbose?: boolean;
   /** Máximo de páginas a recorrer (paginación) */
   maxPages?: number;
   /** Ejecutar auditoría de accesibilidad con axe-core */
   a11y?: boolean;
+  /** Ejecutar extracción SEO (default: true; false para solo a11y) */
+  seo?: boolean;
+  /** Discover mode: extraer URLs de artículos desde seed URLs */
+  discover?: boolean;
+  /** Selector CSS para discover mode */
+  discoverSelector?: string;
+  /** Páginas a recorrer en discover mode paginado */
+  discoverPages?: number;
+  /** Modo recursivo: descubre secciones y luego notas */
+  discoverRecursive?: boolean;
+  /** Scrapea TODAS las URLs descubiertas, no solo .html */
+  discoverScrapeAll?: boolean;
 }
