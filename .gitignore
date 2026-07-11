@@ -4,4 +4,8 @@ output/
 *.log
 .env
 data/
+docs/
+openspec
+.atl/
 url-total.txt
+.auditoria-final.checkpoint.json

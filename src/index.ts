@@ -4,9 +4,12 @@ import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { scrapeUrls } from './scraper.js';
-import { toMarkdown, toHtml } from './formatter.js';
-import type { CliArgs, OutputFormat, ScrapeSummary } from './types.js';
+import { unlinkSync } from 'node:fs';
+import { chromium } from 'playwright';
+import { scrapeUrls, loadCheckpoint } from './scraper.js';
+import { discoverUrls } from './discover.js';
+import { toMarkdown, toHtml, toCsv } from './formatter.js';
+import type { CliArgs, OutputFormat, ScrapeSummary, SeoResult } from './types.js';
 
 /**
  * Punto de entrada principal del CLI.
@@ -59,7 +62,7 @@ async function main(): Promise<void> {
     .option('format', {
       alias: 'f',
       type: 'string',
-      description: 'Formato de salida: json, md (Markdown), html, o both (todos)',
+      description: 'Formato de salida: json, html, md (Markdown), o both (json + html)',
       default: 'json',
       choices: ['json', 'md', 'markdown', 'html', 'both'],
     })
@@ -75,11 +78,57 @@ async function main(): Promise<void> {
       description: 'Ejecutar auditoría de accesibilidad con axe-core en cada página',
       default: false,
     })
+    .option('seo', {
+      type: 'boolean',
+      description: 'Extraer metadata SEO (title, headings, OG, imágenes). Default: true. Poner false para solo --a11y',
+      default: true,
+    })
     .option('max-pages', {
       alias: 'p',
       type: 'number',
       description: 'Páginas a recorrer en listados paginados (2+ sigue "Siguiente")',
       default: 1,
+    })
+    .option('concurrency', {
+      alias: 'c',
+      type: 'number',
+      description: 'Workers en paralelo (default: 1). Advertencia: cada worker consume ~300 MB RAM',
+      default: 1,
+    })
+    .option('resume', {
+      type: 'boolean',
+      description: 'Reanudar desde el último checkpoint guardado',
+      default: false,
+    })
+    .option('checkpoint-every', {
+      type: 'number',
+      description: 'Guardar checkpoint cada N URLs (default: 10, 0 = desactivado)',
+      default: 10,
+    })
+    .option('discover', {
+      type: 'boolean',
+      description: 'Descubrir URLs de artículos desde la(s) URL(s) de entrada usando un selector CSS',
+      default: false,
+    })
+    .option('discover-selector', {
+      type: 'string',
+      description: 'Selector CSS para descubrir URLs de artículos (default: links a .html)',
+      default: 'a[href$=".html"]',
+    })
+    .option('discover-pages', {
+      type: 'number',
+      description: 'Páginas a recorrer en discover mode para encontrar más notas (sigue "Siguiente")',
+      default: 1,
+    })
+    .option('discover-recursive', {
+      type: 'boolean',
+      description: 'Modo recursivo: descubre secciones desde la URL principal y luego notas desde cada sección',
+      default: false,
+    })
+    .option('discover-scrape-all', {
+      type: 'boolean',
+      description: 'Scrapea TODAS las URLs descubiertas (notas + secciones + autores + etc), no solo .html',
+      default: false,
     })
     .option('verbose', {
       alias: 'v',
@@ -91,38 +140,171 @@ async function main(): Promise<void> {
     .alias('help', 'h')
     .parseSync() as CliArgs;
 
-  const { input, timeout, delay, waitUntil, googlebot, noCacheBuster, format, verbose, maxPages, a11y } = argv;
+  const { input, timeout, delay, waitUntil, googlebot, noCacheBuster, format, verbose, maxPages, a11y, seo, resume, concurrency, discover, discoverSelector, discoverPages, discoverRecursive, discoverScrapeAll } = argv;
+  const checkpointEvery = argv.checkpointEvery ?? 10;
   const output = argv.output ?? 'output/results.json';
   const outputFormat = (format === 'markdown' ? 'md' : format) as OutputFormat;
 
-  // ─── Validar archivo de entrada ─────────────────────────────────
-  if (!existsSync(input)) {
-    console.error(`✗ Archivo no encontrado: ${input}`);
-    process.exit(1);
-  }
+  // ─── Calcular ruta de checkpoint ─────────────────────────────────
+  const checkpointPath = outputPathToCheckpoint(output);
 
-  // ─── Leer URLs ──────────────────────────────────────────────────
-  const raw = readFileSync(input, 'utf-8');
-  const urls = parseUrlFile(raw, input.endsWith('.csv'));
+  // ─── Determinar URLs y estado inicial ───────────────────────────
+  let urls: string[];
+  let existingResults: SeoResult[] = [];
+  let startIndex = 0;
+
+  if (resume) {
+    const cp = loadCheckpoint(checkpointPath);
+    if (!cp || cp.nextIndex >= cp.urls.length) {
+      console.log('\n👻 No hay checkpoint pendiente. Iniciando desde cero.\n');
+      // Leer URLs normalmente
+      urls = readUrlsFromFile(input);
+    } else {
+      console.log(`\n👻 seo-ghost - Reanudando desde checkpoint (${cp.nextIndex}/${cp.urls.length})\n`);
+      urls = cp.urls;
+      existingResults = cp.results;
+      startIndex = cp.nextIndex;
+    }
+  } else {
+    urls = readUrlsFromFile(input);
+  }
 
   if (urls.length === 0) {
-    console.error('✗ No se encontraron URLs válidas en el archivo.');
+    console.error('✗ No se encontraron URLs válidas.');
     process.exit(1);
   }
 
-  console.log(`\n👻 seo-ghost - Iniciando extracción de metadata SEO\n`);
-  console.log(`📄 Archivo:     ${input}`);
+  console.log(`📄 Archivo:     ${resume ? '(checkpoint)' : input}`);
   console.log(`🔗 URLs totales: ${urls.length}`);
+  if (startIndex > 0) {
+    console.log(`♻️  Reanudando:   URL #${startIndex + 1} (${urls.length - startIndex} pendientes)`);
+  }
   console.log(`⏱  Timeout:     ${timeout}ms`);
   console.log(`⏳ Delay:       ${delay}ms`);
   console.log(`🤖 User-Agent:  ${googlebot ? 'Googlebot Smartphone' : 'Chrome Desktop'}`);
   console.log(`🔓 Cache Buster: ${noCacheBuster ? 'No' : 'Sí'}`);
   console.log(`♿ Accesibilidad: ${a11y ? 'Sí (axe-core)' : 'No'}`);
+  console.log(`🔍 SEO:          ${seo !== false ? 'Sí' : 'No'}`);
   console.log(`📄 Máx páginas:  ${maxPages ?? 1}`);
   console.log(`📁 Salida:      ${output}`);
-  const formatLabel = format === 'both' ? 'JSON + Markdown + HTML' : format === 'html' ? 'HTML' : format === 'md' || format === 'markdown' ? 'Markdown' : 'JSON';
+  const conc = concurrency ?? 1;
+  console.log(`💾 Checkpoint:  ${checkpointEvery > 0 ? `Cada ${checkpointEvery} URLs → ${checkpointPath}` : 'No'}`);
+  console.log(`⚡ Concurrencia: ${conc > 1 ? `${conc} workers` : 'No (secuencial)'}`);
+  const formatLabel = format === 'both' ? 'JSON + HTML' : format === 'html' ? 'HTML' : format === 'md' || format === 'markdown' ? 'Markdown' : 'JSON';
   console.log(`📋 Formato:     ${formatLabel}`);
   console.log('');
+
+  // ─── Modo Discover ──────────────────────────────────────────────
+  if (discover && urls.length > 0) {
+    const sel = discoverSelector ?? 'a[href$=".html"]';
+    const dp = discoverPages ?? 1;
+    const recursive = discoverRecursive ?? false;
+    const scrapeAll = discoverScrapeAll ?? false;
+
+    const actualSel = scrapeAll ? (discoverSelector ?? 'a') : sel;
+    console.log(`🔍 Discover mode activado — selector: "${actualSel.substring(0, 60)}..."`);
+    if (dp > 1) console.log(`   Barriendo ${dp} páginas de cada sección...`);
+    if (recursive) console.log(`   Modo recursivo: descubriendo secciones y luego notas desde cada una`);
+    if (scrapeAll) console.log(`   Scrapeando TODAS las URLs descubiertas (no solo .html)`);
+    console.log(`   Descubriendo URLs desde ${urls.length} página(s) semilla...`);
+
+    const browser = await chromium.launch({ headless: true });
+    try {
+      if (recursive) {
+        // ─── Modo Recursivo ───────────────────────────────────────
+        // Paso 1: descubrir TODOS los links internos desde las semillas
+        console.log(`   Fase 1: descubriendo todas las URLs internas desde semillas...`);
+        const allLinks: string[] = [];
+        for (const seedUrl of urls) {
+          const found = await discoverUrls(browser, seedUrl, 'a', { timeout, verbose: !!verbose, maxPages: dp });
+          allLinks.push(...found);
+        }
+
+        // Obtener el origen
+        let origin = '';
+        try { origin = new URL(urls[0]).origin; } catch { /* skip */ }
+
+        // Separar: .html → notas, lo demás → secciones
+        const articles = allLinks.filter((u) => u.endsWith('.html'));
+        const sections = allLinks.filter((u) => !u.endsWith('.html') && u.startsWith(origin));
+
+        const uniqueSections = [...new Set(sections)];
+        console.log(`   Fase 1: ${uniqueSections.length} secciones encontradas, ${articles.length} notas directas`);
+
+        // Paso 2: desde cada sección descubrir más URLs
+        console.log(`   Fase 2: descubriendo URLs desde ${uniqueSections.length} secciones...`);
+        const moreUrls: string[] = [];
+        for (let i = 0; i < uniqueSections.length; i++) {
+          const sectionUrl = uniqueSections[i];
+          if (verbose) console.log(`   [${i + 1}/${uniqueSections.length}] ${sectionUrl}`);
+          const found = await discoverUrls(browser, sectionUrl, scrapeAll ? 'a' : 'a[href$=".html"]', {
+            timeout,
+            verbose: false,
+            maxPages: dp,
+          });
+          moreUrls.push(...found);
+        }
+
+        if (scrapeAll) {
+          // Scrapear TODO: semillas + todas las URLs descubiertas (incluye secciones, autores, etc)
+          const allUnique = [...new Set([...allLinks, ...moreUrls])];
+          const seedCount = urls.length;
+          urls = [...urls, ...allUnique];
+          console.log(`🔗 URLs semilla:        ${seedCount}`);
+          console.log(`🔗 URLs descubiertas:   ${allUnique.length} URLs totales`);
+          console.log(`🔗 URLs totales:        ${urls.length}`);
+          if (allUnique.length > 0) {
+            console.log(`   Primeras URLs descubiertas:`);
+            for (const u of allUnique.slice(0, 3)) {
+              console.log(`    → ${u}`);
+            }
+            if (allUnique.length > 3) console.log(`    → ... y ${allUnique.length - 3} más`);
+          }
+        } else {
+          // Solo .html (comportamiento actual)
+          const allArticles = [...new Set([...articles, ...moreUrls])];
+          const seedCount = urls.length;
+          urls = [...urls, ...allArticles];
+          console.log(`🔗 URLs semilla:        ${seedCount}`);
+          console.log(`🔗 URLs descubiertas:   ${allArticles.length} notas`);
+          console.log(`🔗 URLs totales:        ${urls.length}`);
+          if (allArticles.length > 0) {
+            console.log(`   Primeras notas descubiertas:`);
+            for (const u of allArticles.slice(0, 3)) {
+              console.log(`    → ${u}`);
+            }
+            if (allArticles.length > 3) console.log(`    → ... y ${allArticles.length - 3} más`);
+          }
+        }
+      } else {
+        // ─── Modo Normal (no recursivo) ────────────────────────────
+        const allDiscovered: string[] = [];
+        for (const seedUrl of urls) {
+          const found = await discoverUrls(browser, seedUrl, actualSel, { timeout, verbose: !!verbose, maxPages: dp });
+          allDiscovered.push(...found);
+        }
+        const unique = allDiscovered.filter((v, i, a) => a.indexOf(v) === i);
+        console.log(`🔍 Descubiertas ${unique.length} URLs únicas`);
+
+        const seedCount = urls.length;
+        urls = [...urls, ...unique];
+        console.log(`🔗 URLs semilla:       ${seedCount}`);
+        console.log(`🔗 URLs descubiertas:  ${unique.length}`);
+        console.log(`🔗 URLs totales:       ${urls.length}`);
+        if (unique.length > 0) {
+          console.log(`   Primeras descubiertas:`);
+          for (const u of unique.slice(0, 3)) {
+            console.log(`    → ${u}`);
+          }
+          if (unique.length > 3) console.log(`    → ... y ${unique.length - 3} más`);
+        }
+      }
+    } finally {
+      await browser.close();
+    }
+
+    console.log('');
+  }
 
   // ─── Ejecutar scraping ──────────────────────────────────────────
   const results = await scrapeUrls(urls, {
@@ -133,6 +315,12 @@ async function main(): Promise<void> {
     cacheBuster: !noCacheBuster,
     maxPages: maxPages ?? 1,
     runAxe: a11y ?? false,
+    runSeo: seo !== false,
+    checkpointPath: checkpointEvery > 0 ? checkpointPath : undefined,
+    checkpointEvery,
+    existingResults,
+    startIndex,
+    concurrency: conc,
   });
 
   // ─── Armar resumen ──────────────────────────────────────────────
@@ -152,7 +340,7 @@ async function main(): Promise<void> {
   }
 
   const saveJson = outputFormat === 'json' || outputFormat === 'both';
-  const saveMd = outputFormat === 'md' || outputFormat === 'both';
+  const saveMd = outputFormat === 'md';
   const saveHtml = outputFormat === 'html' || outputFormat === 'both';
 
   if (saveJson) {
@@ -164,9 +352,7 @@ async function main(): Promise<void> {
   }
 
   if (saveMd) {
-    const mdPath = outputFormat === 'both'
-      ? outputPath.replace(/\.\w+$/, '') + '.md'
-      : outputPath.replace(/\.\w+$/, '') + '.md';
+    const mdPath = outputPath.replace(/\.\w+$/, '') + '.md';
     const markdown = toMarkdown(summary);
     writeFileSync(mdPath, markdown, 'utf-8');
     console.log(`✓ Markdown guardado: ${mdPath}`);
@@ -179,6 +365,11 @@ async function main(): Promise<void> {
     const html = toHtml(summary);
     writeFileSync(htmlPath, html, 'utf-8');
     console.log(`✓ HTML guardado: ${htmlPath}`);
+  }
+
+  // ─── Limpiar checkpoint ─────────────────────────────────────────
+  if (checkpointEvery > 0 && existsSync(checkpointPath)) {
+    try { unlinkSync(checkpointPath); } catch { /* ignore */ }
   }
 
   // ─── Mostrar resumen en consola ─────────────────────────────────
@@ -238,3 +429,36 @@ main().catch((err) => {
   console.error('Error fatal:', err);
   process.exit(1);
 });
+
+// ─── Helpers de checkpoint ────────────────────────────────────────
+
+/**
+ * Deriva la ruta del checkpoint a partir de la ruta de salida.
+ * Ej: output/results.json → output/.results.checkpoint.json
+ */
+function outputPathToCheckpoint(outputPath: string): string {
+  const dir = dirname(outputPath);
+  const base = outputPath.replace(/.*[/\\]/, '');
+  return `${dir}/.${base}.checkpoint.json`;
+}
+
+/**
+ * Lee URLs de un archivo (TXT o CSV).
+ * Mismo comportamiento que el código original pero encapsulado.
+ */
+function readUrlsFromFile(input: string): string[] {
+  if (!existsSync(input)) {
+    console.error(`✗ Archivo no encontrado: ${input}`);
+    process.exit(1);
+  }
+
+  const raw = readFileSync(input, 'utf-8');
+  const urls = parseUrlFile(raw, input.endsWith('.csv'));
+
+  if (urls.length === 0) {
+    console.error('✗ No se encontraron URLs válidas en el archivo.');
+    process.exit(1);
+  }
+
+  return urls;
+}
