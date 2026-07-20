@@ -1,8 +1,10 @@
 # 👻 seo-ghost
 
 **Scraper de metadata SEO + análisis de imágenes + auditoría de accesibilidad** basado en Playwright.
-Extrae información estructural de páginas web con evasión de WAF/Cloudflare,
-soporte de paginación, lazy loading, carousels, y auditoría axe-core.
+Extrae información estructural de páginas web con mitigaciones para algunos
+WAF/Cloudflare, soporte de paginación, lazy loading, carousels, y auditoría
+axe-core. Las protecciones del sitio pueden impedir el análisis; no se garantiza
+el acceso a una URL bloqueada.
 
 ---
 
@@ -24,7 +26,7 @@ soporte de paginación, lazy loading, carousels, y auditoría axe-core.
 | **Structured Data** | Extracción de JSON-LD con validación de parseo |
 | **Word Count** | Conteo de palabras y párrafos del contenido visible |
 | **Accesibilidad** | Auditoría axe-core con reglas WCAG 2.0/2.1 A/AA |
-| **Anti-bloqueo** | Evasión de Cloudflare, WAF, Googlebot UA |
+| **Anti-bloqueo** | Estrategias de compatibilidad para WAF/Cloudflare y Googlebot UA; no garantizan acceso |
 | **Cache buster** | Query param `_cb` para evitar respuestas cacheadas |
 | **Concurrencia** | Workers en paralelo para acelerar scraping de múltiples URLs |
 | **Checkpoint/Resume** | Guarda progreso cada N URLs y permite reanudar si se interrumpe |
@@ -38,14 +40,36 @@ npm install
 npx playwright install chromium
 ```
 
+Para validar también las pruebas que abren Chromium:
+
+```bash
+npm run test:browser
+```
+
+Para la suite rápida (sin abrir un navegador):
+
+```bash
+npm test
+```
+
+### Alcance de las pruebas
+
+| Área | Cobertura automatizada actual | Límite conocido |
+|------|-------------------------------|-----------------|
+| CLI y menú | Normalización de comandos, validación y perfiles | No hay prueba end-to-end del binario completo |
+| Archivos de entrada | TXT y CSV con comillas, comas y cabecera URL | No valida servidores o archivos remotos |
+| ALT | Reglas puras y una integración opcional con Chromium para `missing`, `bare`, `empty`, `generic` y `descriptive` | No sustituye una revisión editorial del contexto de la imagen |
+| Checkpoints y reportes | Orden contiguo al persistir y resumen previo a serialización | No reproduce interrupciones reales de red o procesos |
+
+`npm test` omite la prueba que abre Chromium. Ejecutá `npm run test:browser`
+después de instalar el navegador de Playwright para validar la integración real
+del DOM. La suite no depende de sitios públicos, por lo que bloqueos de WAF,
+cambios de terceros y variaciones de contenido deben verificarse en una auditoría
+controlada contra el sitio objetivo.
+
 ## 🚀 Paso a paso con tu archivo `url-total.txt`
 
 ### CLI de SEO Ghost
-
-![Interfaz TUI de SEO Ghost](assets/seo-ghost-tui.png)
-
-La imagen es una ilustración de la experiencia visual. La TUI real se ejecuta
-en la terminal y no requiere navegador ni dependencias adicionales.
 
 SEO Ghost tiene comandos orientados a tareas. El menú guiado sigue disponible
 para quien lo prefiera, pero ya no es la interfaz principal:
@@ -66,8 +90,10 @@ Los flags heredados continúan funcionando para scripts y CI.
 ### TUI navegable por teclado
 
 Al abrir `seo-ghost --menu` desde una terminal interactiva, la herramienta
-presenta una interfaz visual con perfiles de auditoría. No hace falta recordar
-flags para el uso manual.
+presenta un asistente visual de cuatro pasos: tarea, perfil, entrada/salida y
+confirmación. Cada pantalla conserva el contexto y la última muestra un resumen
+completo antes de abrir el navegador. No hace falta recordar flags para el uso
+manual.
 
 | Tecla | Acción |
 |-------|--------|
@@ -120,11 +146,21 @@ Categorías:
 | 🟠 | `bare` | `<img alt>` sin valor — el desarrollador se olvidó de poner el texto |
 | 🔴 | `missing` | `<img>` sin atributo alt — el desarrollador se olvidó por completo |
 
+`imagesWithoutAlt` y `imagesWithoutAltList` contabilizan exclusivamente
+`missing` y `bare`: son errores estructurales. `generic` no se suma como error,
+pero requiere revisión porque puede no describir el contenido. `empty` es válido
+solo si la imagen es realmente decorativa; la herramienta no puede decidir esa
+intención sin contexto humano.
+
 Además del `<img>`, también se analizan:
 - **`<video poster="">`** — pósters de video como imágenes
 - **`<iframe>` embebidos** — YouTube, Vimeo, Dailymotion, Facebook
 - **`background-image` CSS** — imágenes de fondo en divs, sections, articles, etc.
 - **`<picture>` + `<source>`** — fuentes alternativas con media queries responsive
+
+Las imágenes de fondo y las fuentes de `<picture>` se reportan como inventario
+adicional; no incrementan los errores ALT, porque no son atributos `alt` de un
+elemento `<img>`.
 
 En el reporte **HTML** las imágenes aparecen agrupadas por categoría en acordeones expandibles, y
 las **background images** y **picture sources** tienen sus propias secciones.
@@ -245,6 +281,8 @@ npx tsx src/index.ts --input url-total.txt --a11y --seo false --output solo-a11y
 | `--no-cache-buster` | — | `false` | Desactivar cache buster |
 | `--wait-until` | `-w` | `domcontentloaded` | `domcontentloaded`, `load`, `networkidle` |
 | `--concurrency` | `-c` | `1` | Workers en paralelo (~300 MB RAM c/u) |
+| `--max-scrolls` | — | `100` | Límite de scrolls para lazy loading; bajar este valor acelera auditorías grandes |
+| `--max-carousel-clicks` | — | `25` | Límite de avances por control de carousel |
 | `--verbose` | `-v` | `false` | Más información en consola |
 | `--resume` | — | `false` | Reanudar desde checkpoint |
 | `--checkpoint-every` | — | `10` | Guardar checkpoint cada N URLs (`0` = desactivado) |
@@ -253,6 +291,11 @@ npx tsx src/index.ts --input url-total.txt --a11y --seo false --output solo-a11y
 | `--discover-pages` | — | `1` | Páginas a recorrer en discover (sigue "Siguiente") |
 | `--discover-recursive` | — | `false` | 2 fases: descubre secciones → notas desde cada sección |
 | `--discover-scrape-all` | — | `false` | Scrapea TODAS las URLs descubiertas, no solo `.html` |
+
+Los límites `--max-scrolls` y `--max-carousel-clicks` son topes de rendimiento,
+no objetivos de cobertura. Reducirlos puede dejar sin activar imágenes lazy o
+slides posteriores; para una auditoría exhaustiva usá los valores por defecto o
+subilos de forma controlada.
 
 ## 📊 Formatos de salida
 
@@ -278,7 +321,7 @@ Estructura completa con todos los datos crudos, incluyendo el array `images` con
   "pictureSources": [
     { "src": "https://assets.ecuavisa.com/foto-mobile.jpg", "media": "(max-width: 768px)", "alt": "Descripción" }
   ],
-  "imagesWithoutAlt": 4,
+  "imagesWithoutAlt": 2,
   "imagesWithoutAltList": [...]
 }
 ```

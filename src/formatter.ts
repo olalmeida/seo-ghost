@@ -173,8 +173,20 @@ export function toMarkdown(summary: ScrapeSummary): string {
       if ((imgCounts.bare ?? 0) > 0) lines.push(`| **Bare (alt sin valor)** | ${imgCounts.bare} 🟠 |`);
       if (imgCounts.missing > 0) lines.push(`| **Missing (sin alt)** | ${imgCounts.missing} 🔴 |`);
       lines.push(`| **Errores ALT (missing/bare)** | ${r.imagesWithoutAlt} 🔴 |`);
-      lines.push(`| **Revisión de calidad (generic)** | ${imgCounts.generic} 🟡 |`);
+      lines.push(`| **Revisiones de calidad ALT** | ${r.altQualityReviewCount ?? imgCounts.generic} 🟡 |`);
       lines.push('');
+
+      const qualityIssues = r.altQualityIssues?.filter((issue) => issue.severity === 'review') ?? [];
+      if (qualityIssues.length > 0) {
+        lines.push('**Hallazgos de calidad ALT** 🟡');
+        lines.push('');
+        lines.push('| Imagen | Hallazgo |');
+        lines.push('|--------|----------|');
+        qualityIssues.forEach((issue) => {
+          lines.push(`| [${extractFilename(issue.image.src)}](${issue.image.src}) | ${issue.message} |`);
+        });
+        lines.push('');
+      }
 
       // Listas agrupadas por categoría
       const groupedImages = groupByCategory(r.images);
@@ -663,7 +675,7 @@ export function toHtml(summary: ScrapeSummary): string {
         <div class="section-title">Imágenes</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.75rem">
           <span class="badge badge-green">✅ Descriptive: ${imgCounts.descriptive}</span>
-          ${imgCounts.generic > 0 ? `<span class="badge badge-yellow">🟡 Revisión: ${imgCounts.generic}</span>` : ''}
+          ${(r2.altQualityReviewCount ?? imgCounts.generic) > 0 ? `<span class="badge badge-yellow">🟡 Revisión: ${r2.altQualityReviewCount ?? imgCounts.generic}</span>` : ''}
           ${imgCounts.empty > 0 ? `<span class="badge badge-blue">⚪ Decorativas: ${imgCounts.empty}</span>` : ''}
           ${(imgCounts.bare ?? 0) > 0 ? `<span class="badge badge-orange">🟠 Bare: ${imgCounts.bare}</span>` : ''}
           ${imgCounts.missing > 0 ? `<span class="badge badge-red">🔴 Missing: ${imgCounts.missing}</span>` : ''}
@@ -686,6 +698,14 @@ export function toHtml(summary: ScrapeSummary): string {
       r.push(renderGroup('empty', '⚪ Decorativas (alt vacío válido)'));
       r.push(renderGroup('bare', '🟠 Alt sin valor (<img alt>)'));
       r.push(renderGroup('generic', '🟡 ALT genérico — requiere revisión'));
+      const qualityIssues = r2.altQualityIssues?.filter((issue) => issue.severity === 'review') ?? [];
+      if (qualityIssues.length > 0) {
+        r.push(`<p style="font-size:0.82rem;font-weight:600;margin:0.75rem 0 0.25rem">🟡 Hallazgos de calidad ALT</p><table class="img-table"><thead><tr><th>Imagen</th><th>Hallazgo</th></tr></thead><tbody>`);
+        qualityIssues.forEach((issue) => {
+          r.push(`<tr><td><a href="${escapeHtml(issue.image.src)}" target="_blank">${escapeHtml(extractFilename(issue.image.src))}</a></td><td>${escapeHtml(issue.message)}</td></tr>`);
+        });
+        r.push('</tbody></table>');
+      }
       r.push(`</div>`);
     }
 
@@ -879,6 +899,7 @@ export function toCsv(summary: ScrapeSummary): string {
     'Images Bare',
     'Images Missing',
     'ALT Errors (Missing/Bare)',
+    'ALT Quality Reviews',
   ];
 
   if (hasA11y) {
@@ -920,6 +941,7 @@ export function toCsv(summary: ScrapeSummary): string {
       String(imgCounts.bare ?? 0),
       String(imgCounts.missing),
       String(r.imagesWithoutAlt),
+      String(r.altQualityReviewCount ?? imgCounts.generic),
     ];
 
     if (hasA11y) {

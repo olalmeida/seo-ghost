@@ -98,6 +98,12 @@ export interface SeoResult {
   imagesWithoutAltList: string[];
   /** Análisis completo de todas las imágenes con categorización */
   images: ImageAnalysis[];
+  /** Hallazgos de calidad ALT: errores estructurales y revisiones editoriales. */
+  altQualityIssues?: readonly AltQualityIssue[];
+  /** Cantidad de errores ALT estructurales detectados en el análisis de calidad. */
+  altQualityErrorCount?: number;
+  /** Cantidad de aspectos ALT que requieren revisión editorial. */
+  altQualityReviewCount?: number;
   /** Imágenes de fondo CSS background-image */
   backgroundImages?: BgImageAnalysis[];
   /** Fuentes de <picture> con media queries */
@@ -191,6 +197,10 @@ export interface ScrapeOptions {
   startIndex?: number;
   /** Número de workers concurrentes (default: 1). Cada worker usa su propio context. */
   concurrency?: number;
+  /** Máximo de pasos de scroll para activar lazy loading (default: 100). */
+  maxScrolls?: number;
+  /** Máximo de avances por control de carousel (default: 25). */
+  maxCarouselClicks?: number;
   /** HTML original de la respuesta HTTP (antes del parseo del browser) */
   rawHtml?: string;
 }
@@ -272,6 +282,10 @@ export interface CliArgs {
   checkpointEvery?: number;
   /** Concurrencia: workers en paralelo (default: 1) */
   concurrency?: number;
+  /** Límite de scrolls para lazy loading. */
+  maxScrolls?: number;
+  /** Límite de avances por control de carousel. */
+  maxCarouselClicks?: number;
   /** Modo verbose */
   verbose?: boolean;
   /** Máximo de páginas a recorrer (paginación) */
@@ -291,3 +305,4 @@ export interface CliArgs {
   /** Scrapea TODAS las URLs descubiertas, no solo .html */
   discoverScrapeAll?: boolean;
 }
+import type { AltQualityIssue } from './collectors/image-quality.js';

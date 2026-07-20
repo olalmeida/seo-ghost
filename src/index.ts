@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { readFileSync, existsSync } from 'node:fs';
+import { dirname } from 'node:path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { unlinkSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { scrapeUrls, loadCheckpoint } from './scraper.js';
-import { discoverUrls } from './discover.js';
-import { toMarkdown, toHtml, toCsv } from './formatter.js';
-import type { CliArgs, OutputFormat, ScrapeSummary, SeoResult } from './types.js';
+import type { CliArgs, OutputFormat, SeoResult } from './types.js';
 import { runInteractiveMenu } from './cli/menu.js';
 import { normalizeCommandArgs, printHelp, validateCliArgs } from './cli/commands.js';
+import { parseUrlFile } from './cli/input.js';
+import { createSummary, writeReports } from './application/reporting.js';
+import { discoverAuditUrls } from './application/discovery.js';
 
 /**
  * Punto de entrada principal del CLI.
@@ -114,6 +115,16 @@ async function main(): Promise<void> {
       description: 'Workers en paralelo (default: 1). Advertencia: cada worker consume ~300 MB RAM',
       default: 1,
     })
+    .option('max-scrolls', {
+      type: 'number',
+      description: 'Máximo de scrolls para activar lazy loading (default: 100)',
+      default: 100,
+    })
+    .option('max-carousel-clicks', {
+      type: 'number',
+      description: 'Máximo de avances por carousel (default: 25)',
+      default: 25,
+    })
     .option('resume', {
       type: 'boolean',
       description: 'Reanudar desde el último checkpoint guardado',
@@ -173,7 +184,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const { input, timeout, delay, waitUntil, googlebot, noCacheBuster, format, verbose, maxPages, a11y, seo, resume, concurrency, discover, discoverSelector, discoverPages, discoverRecursive, discoverScrapeAll } = argv;
+  const { input, timeout, delay, waitUntil, googlebot, noCacheBuster, format, verbose, maxPages, a11y, seo, resume, concurrency, maxScrolls, maxCarouselClicks, discover, discoverSelector, discoverPages, discoverRecursive, discoverScrapeAll } = argv;
   const checkpointEvery = argv.checkpointEvery ?? 10;
   const output = argv.output ?? 'output/results.json';
   const outputFormat = (format === 'markdown' ? 'md' : format) as OutputFormat;
@@ -195,7 +206,7 @@ async function main(): Promise<void> {
     } else {
       console.log(`\n👻 seo-ghost - Reanudando desde checkpoint (${cp.nextIndex}/${cp.urls.length})\n`);
       urls = cp.urls;
-      existingResults = cp.results;
+      existingResults = cp.results.slice(0, cp.nextIndex);
       startIndex = cp.nextIndex;
     }
   } else {
@@ -223,114 +234,43 @@ async function main(): Promise<void> {
   const conc = concurrency ?? 1;
   console.log(`💾 Checkpoint:  ${checkpointEvery > 0 ? `Cada ${checkpointEvery} URLs → ${checkpointPath}` : 'No'}`);
   console.log(`⚡ Concurrencia: ${conc > 1 ? `${conc} workers` : 'No (secuencial)'}`);
+  console.log(`🖼️  Lazy load:   ${maxScrolls} scrolls, ${maxCarouselClicks} clicks/carousel`);
   const formatLabel = format === 'both' ? 'JSON + HTML' : format === 'html' ? 'HTML' : format === 'csv' ? 'CSV' : format === 'md' || format === 'markdown' ? 'Markdown' : 'JSON';
   console.log(`📋 Formato:     ${formatLabel}`);
   console.log('');
 
   // ─── Modo Discover ──────────────────────────────────────────────
   if (discover && urls.length > 0) {
-    const sel = discoverSelector ?? 'a[href$=".html"]';
     const dp = discoverPages ?? 1;
     const recursive = discoverRecursive ?? false;
     const scrapeAll = discoverScrapeAll ?? false;
 
-    const actualSel = scrapeAll ? (discoverSelector ?? 'a') : sel;
-    console.log(`🔍 Discover mode activado — selector: "${actualSel.substring(0, 60)}..."`);
-    if (dp > 1) console.log(`   Barriendo ${dp} páginas de cada sección...`);
-    if (recursive) console.log(`   Modo recursivo: descubriendo secciones y luego notas desde cada una`);
-    if (scrapeAll) console.log(`   Scrapeando TODAS las URLs descubiertas (no solo .html)`);
-    console.log(`   Descubriendo URLs desde ${urls.length} página(s) semilla...`);
-
     const browser = await chromium.launch({ headless: true });
     try {
+      const discovery = await discoverAuditUrls(browser, urls, {
+        selector: discoverSelector,
+        timeout,
+        verbose: !!verbose,
+        maxPages: dp,
+        recursive,
+        scrapeAll,
+      });
+      const seedCount = urls.length;
+      urls = discovery.urls;
+
+      console.log(`🔍 Discover mode activado — selector: "${discovery.selector.substring(0, 60)}..."`);
+      if (dp > 1) console.log(`   Barriendo ${dp} páginas de cada sección...`);
       if (recursive) {
-        // ─── Modo Recursivo ───────────────────────────────────────
-        // Paso 1: descubrir TODOS los links internos desde las semillas
-        console.log(`   Fase 1: descubriendo todas las URLs internas desde semillas...`);
-        const allLinks: string[] = [];
-        for (const seedUrl of urls) {
-          const found = await discoverUrls(browser, seedUrl, 'a', { timeout, verbose: !!verbose, maxPages: dp });
-          allLinks.push(...found);
-        }
-
-        // Obtener el origen
-        let origin = '';
-        try { origin = new URL(urls[0]).origin; } catch { /* skip */ }
-
-        // Separar: .html → notas, lo demás → secciones
-        const articles = allLinks.filter((u) => u.endsWith('.html'));
-        const sections = allLinks.filter((u) => !u.endsWith('.html') && u.startsWith(origin));
-
-        const uniqueSections = [...new Set(sections)];
-        console.log(`   Fase 1: ${uniqueSections.length} secciones encontradas, ${articles.length} notas directas`);
-
-        // Paso 2: desde cada sección descubrir más URLs
-        console.log(`   Fase 2: descubriendo URLs desde ${uniqueSections.length} secciones...`);
-        const moreUrls: string[] = [];
-        for (let i = 0; i < uniqueSections.length; i++) {
-          const sectionUrl = uniqueSections[i];
-          if (verbose) console.log(`   [${i + 1}/${uniqueSections.length}] ${sectionUrl}`);
-          const found = await discoverUrls(browser, sectionUrl, scrapeAll ? 'a' : 'a[href$=".html"]', {
-            timeout,
-            verbose: false,
-            maxPages: dp,
-          });
-          moreUrls.push(...found);
-        }
-
-        if (scrapeAll) {
-          // Scrapear TODO: semillas + todas las URLs descubiertas (incluye secciones, autores, etc)
-          const allUnique = [...new Set([...allLinks, ...moreUrls])];
-          const seedCount = urls.length;
-          urls = [...urls, ...allUnique];
-          console.log(`🔗 URLs semilla:        ${seedCount}`);
-          console.log(`🔗 URLs descubiertas:   ${allUnique.length} URLs totales`);
-          console.log(`🔗 URLs totales:        ${urls.length}`);
-          if (allUnique.length > 0) {
-            console.log(`   Primeras URLs descubiertas:`);
-            for (const u of allUnique.slice(0, 3)) {
-              console.log(`    → ${u}`);
-            }
-            if (allUnique.length > 3) console.log(`    → ... y ${allUnique.length - 3} más`);
-          }
-        } else {
-          // Solo .html (comportamiento actual)
-          const allArticles = [...new Set([...articles, ...moreUrls])];
-          const seedCount = urls.length;
-          urls = [...urls, ...allArticles];
-          console.log(`🔗 URLs semilla:        ${seedCount}`);
-          console.log(`🔗 URLs descubiertas:   ${allArticles.length} notas`);
-          console.log(`🔗 URLs totales:        ${urls.length}`);
-          if (allArticles.length > 0) {
-            console.log(`   Primeras notas descubiertas:`);
-            for (const u of allArticles.slice(0, 3)) {
-              console.log(`    → ${u}`);
-            }
-            if (allArticles.length > 3) console.log(`    → ... y ${allArticles.length - 3} más`);
-          }
-        }
-      } else {
-        // ─── Modo Normal (no recursivo) ────────────────────────────
-        const allDiscovered: string[] = [];
-        for (const seedUrl of urls) {
-          const found = await discoverUrls(browser, seedUrl, actualSel, { timeout, verbose: !!verbose, maxPages: dp });
-          allDiscovered.push(...found);
-        }
-        const unique = allDiscovered.filter((v, i, a) => a.indexOf(v) === i);
-        console.log(`🔍 Descubiertas ${unique.length} URLs únicas`);
-
-        const seedCount = urls.length;
-        urls = [...urls, ...unique];
-        console.log(`🔗 URLs semilla:       ${seedCount}`);
-        console.log(`🔗 URLs descubiertas:  ${unique.length}`);
-        console.log(`🔗 URLs totales:       ${urls.length}`);
-        if (unique.length > 0) {
-          console.log(`   Primeras descubiertas:`);
-          for (const u of unique.slice(0, 3)) {
-            console.log(`    → ${u}`);
-          }
-          if (unique.length > 3) console.log(`    → ... y ${unique.length - 3} más`);
-        }
+        console.log(`   Modo recursivo: ${discovery.sectionUrls.length} secciones y ${discovery.directArticleUrls.length} notas directas`);
+      }
+      if (scrapeAll) console.log(`   Scrapeando TODAS las URLs descubiertas (no solo .html)`);
+      console.log(`🔗 URLs semilla:       ${seedCount}`);
+      console.log(`🔗 URLs descubiertas:  ${discovery.discoveredUrls.length}`);
+      console.log(`🔗 URLs totales:       ${urls.length}`);
+      if (discovery.discoveredUrls.length > 0) {
+        console.log(`   Primeras descubiertas:`);
+        for (const url of discovery.discoveredUrls.slice(0, 3)) console.log(`    → ${url}`);
+        if (discovery.discoveredUrls.length > 3) console.log(`    → ... y ${discovery.discoveredUrls.length - 3} más`);
       }
     } finally {
       await browser.close();
@@ -354,58 +294,14 @@ async function main(): Promise<void> {
     existingResults,
     startIndex,
     concurrency: conc,
+    maxScrolls,
+    maxCarouselClicks,
   });
 
   // ─── Armar resumen ──────────────────────────────────────────────
-  const summary: ScrapeSummary = {
-    timestamp: new Date().toISOString(),
-    totalProcessed: results.length,
-    totalErrors: results.filter((r) => r.error).length,
-    results,
-  };
-
-  // ─── Guardar resultados ─────────────────────────────────────────
-  const outputPath = resolve(output);
-  const outputDir = dirname(outputPath);
-
-  if (!existsSync(outputDir)) {
-    mkdirSync(outputDir, { recursive: true });
-  }
-
-  const saveJson = outputFormat === 'json' || outputFormat === 'both';
-  const saveCsv = outputFormat === 'csv';
-  const saveMd = outputFormat === 'md';
-  const saveHtml = outputFormat === 'html' || outputFormat === 'both';
-
-  if (saveJson) {
-    const jsonPath = outputFormat === 'both'
-      ? outputPath.replace(/\.\w+$/, '') + '.json'
-      : outputPath;
-    writeFileSync(jsonPath, JSON.stringify(summary, null, 2), 'utf-8');
-    console.log(`\n✓ JSON guardado: ${jsonPath}`);
-  }
-
-  if (saveCsv) {
-    const csvPath = outputPath.replace(/\.\w+$/, '') + '.csv';
-    writeFileSync(csvPath, toCsv(summary), 'utf-8');
-    console.log(`✓ CSV guardado: ${csvPath}`);
-  }
-
-  if (saveMd) {
-    const mdPath = outputPath.replace(/\.\w+$/, '') + '.md';
-    const markdown = toMarkdown(summary);
-    writeFileSync(mdPath, markdown, 'utf-8');
-    console.log(`✓ Markdown guardado: ${mdPath}`);
-  }
-
-  if (saveHtml) {
-    const htmlPath = outputFormat === 'both'
-      ? outputPath.replace(/\.\w+$/, '') + '.html'
-      : outputPath.replace(/\.\w+$/, '') + '.html';
-    const html = toHtml(summary);
-    writeFileSync(htmlPath, html, 'utf-8');
-    console.log(`✓ HTML guardado: ${htmlPath}`);
-  }
+  const summary = createSummary(results);
+  const reportPaths = writeReports(summary, output, outputFormat);
+  for (const path of reportPaths) console.log(`✓ Reporte guardado: ${path}`);
 
   // ─── Limpiar checkpoint ─────────────────────────────────────────
   if (checkpointEvery > 0 && existsSync(checkpointPath)) {
@@ -432,38 +328,6 @@ async function main(): Promise<void> {
   process.exit(summary.totalErrors > 0 ? 1 : 0);
 }
 
-/**
- * Parsea un archivo de texto o CSV y extrae las URLs.
- *
- * - TXT: una URL por línea
- * - CSV: busca la primera columna o columna "url"
- */
-function parseUrlFile(content: string, isCsv: boolean): string[] {
-  const lines = content
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter((l) => l && !l.startsWith('#'));
-
-  if (!isCsv) {
-    return lines;
-  }
-
-  // Es CSV: buscar columna "url" en el header
-  if (lines.length === 0) return [];
-
-  const header = lines[0].toLowerCase().split(',');
-  const urlIdx = header.indexOf('url');
-
-  if (urlIdx === -1) {
-    // Si no hay columna "url", asumir que la primera columna es la URL
-    return lines.slice(1).map((l) => l.split(',')[0].trim()).filter(Boolean);
-  }
-
-  return lines
-    .slice(1)
-    .map((l) => l.split(',')[urlIdx]?.trim() ?? '')
-    .filter(Boolean);
-}
 
 main().catch((err) => {
   console.error('Error fatal:', err);

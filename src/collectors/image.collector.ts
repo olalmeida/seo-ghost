@@ -1,5 +1,6 @@
 import type { Page } from 'playwright';
 import type { ImageAnalysis, BgImageAnalysis, PictureSourceAnalysis, SeoResult, ScrapeOptions } from '../types.js';
+import { assessImageAltQuality } from './image-quality.js';
 import type { Collector } from './types.js';
 import { classifyAlt, isAltIssue } from './helpers.js';
 
@@ -27,8 +28,8 @@ export class ImageCollector implements Collector {
   }
 
   async extract(page: Page, result: SeoResult, options: ScrapeOptions): Promise<void> {
-    await this.triggerCarousels(page);
-    await this.scrollToBottom(page);
+    await this.triggerCarousels(page, options.maxCarouselClicks);
+    await this.scrollToBottom(page, options.maxScrolls);
     await this.extractImages(page, result, options.rawHtml);
     await this.extractBgImages(page, result);
     await this.extractPictureSources(page, result);
@@ -43,7 +44,7 @@ export class ImageCollector implements Collector {
    * Detecta y clickea elementos de navegación de carousels para forzar
    * la carga de imágenes lazy en slides ocultos.
    */
-  private async triggerCarousels(page: Page): Promise<void> {
+  private async triggerCarousels(page: Page, maxClicks = 25): Promise<void> {
     // ─── Dots / paginación ───────────────────────────────────────
     const dotSelectors = [
       '.slick-dots li',
@@ -91,7 +92,7 @@ export class ImageCollector implements Collector {
       const button = await page.$(selector);
       if (!button) continue;
 
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < maxClicks; i++) {
         try {
           if (!(await button.isVisible())) break;
           await button.click();
@@ -110,7 +111,7 @@ export class ImageCollector implements Collector {
       try {
         const text = await btn.textContent();
         if (text && /^(>|›|❯|→|next|siguiente|\u276F|\u25B6)$/i.test(text.trim())) {
-          for (let i = 0; i < 15; i++) {
+          for (let i = 0; i < Math.min(maxClicks, 15); i++) {
             if (!(await btn.isVisible())) break;
             await btn.click();
             await page.waitForTimeout(300);
@@ -134,10 +135,9 @@ export class ImageCollector implements Collector {
    *   - Múltiples pasadas: scroll down, espera, scroll up, scroll down again
    *   - Dispara eventos de scroll manualmente como fallback
    */
-  private async scrollToBottom(page: Page): Promise<void> {
+  private async scrollToBottom(page: Page, maxScrolls = 100): Promise<void> {
     const scrollStep = 800;
     const scrollDelay = 300;
-    const maxScrolls = 100;
 
     // Pasada 1: scroll down lento
     await this.scrollPass(page, scrollStep, scrollDelay, maxScrolls);
@@ -304,6 +304,15 @@ export class ImageCollector implements Collector {
     result.imagesWithoutAltList = problematic
       .map((img) => img.src)
       .filter(Boolean);
+    ImageCollector.applyAltQuality(result);
+  }
+
+  /** Recalcula hallazgos de calidad después de completar el inventario de imágenes. */
+  static applyAltQuality(result: SeoResult): void {
+    const assessment = assessImageAltQuality(result.images);
+    result.altQualityIssues = assessment.issues;
+    result.altQualityErrorCount = assessment.errorCount;
+    result.altQualityReviewCount = assessment.reviewCount;
   }
 
   // ─── Background images (CSS) ──────────────────────────────────
@@ -452,9 +461,9 @@ export class ImageCollector implements Collector {
    * Activa lazy loading en una página (scroll + carousels).
    * Útil para paginación cuando se navega a una nueva página.
    */
-  async activateLazyLoading(page: Page): Promise<void> {
-    await this.triggerCarousels(page);
-    await this.scrollToBottom(page);
+  async activateLazyLoading(page: Page, options: ScrapeOptions = {}): Promise<void> {
+    await this.triggerCarousels(page, options.maxCarouselClicks);
+    await this.scrollToBottom(page, options.maxScrolls);
   }
 
   /**

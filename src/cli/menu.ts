@@ -1,7 +1,7 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import type { CliArgs } from '../types.js';
-import { selectOption } from './tui.js';
+import { renderTextPrompt, selectOption, type TuiScreenOptions } from './tui.js';
 
 type MenuChoice = { label: string; value: number };
 
@@ -111,7 +111,7 @@ async function runKeyboardMenu(): Promise<CliArgs | null> {
     { label: 'Accesibilidad', description: 'auditoría axe-core', value: 3 },
     { label: 'Reanudar ejecución', description: 'continuar desde checkpoint', value: 4 },
     { label: 'Salir', value: 0 },
-  ]);
+  ], { step: 'Paso 1 de 4', subtitle: 'Elegí una tarea. Los perfiles se ajustan después.' });
   if (!mode) return null;
 
   const profile = await selectOption('Elegí un perfil de auditoría', [
@@ -119,35 +119,39 @@ async function runKeyboardMenu(): Promise<CliArgs | null> {
     { label: 'SEO', description: 'análisis SEO y reportes completos', value: 'seo' as AuditProfile },
     { label: 'Accesibilidad', description: 'reglas WCAG con axe-core', value: 'accessibility' as AuditProfile },
     { label: 'Completo', description: 'SEO + accesibilidad + reportes', value: 'full' as AuditProfile },
-  ]);
+  ], { step: 'Paso 2 de 4', subtitle: 'Usá un perfil como punto de partida seguro.' });
   if (!profile) return null;
 
-  const inputPath = await promptText('Archivo de URLs (.txt o .csv): ');
+  const inputPath = await promptText('Datos de entrada', 'Archivo de URLs (.txt o .csv): ', {
+    step: 'Paso 3 de 4', subtitle: 'Una URL por línea o una columna URL en CSV.', summary: [`Perfil: ${profileLabel(profile)}`],
+  });
   if (!inputPath) return null;
-  const outputPath = await promptText('Archivo base de salida [output/results.json]: ') || 'output/results.json';
+  const outputPath = await promptText('Salida del reporte', 'Archivo base [output/results.json]: ', {
+    step: 'Paso 3 de 4', subtitle: 'Presioná Enter para usar la ruta recomendada.', summary: [`Entrada: ${inputPath}`],
+  }) || 'output/results.json';
   const format = await selectOption('Formato de salida', [
     { label: 'JSON', value: 'json' },
     { label: 'HTML', value: 'html' },
     { label: 'Markdown', value: 'md' },
     { label: 'JSON + HTML', value: 'both' },
     { label: 'CSV', value: 'csv' },
-  ]);
+  ], { step: 'Paso 3 de 4', subtitle: 'JSON conserva detalle; HTML facilita compartir resultados.' });
   if (!format) return null;
 
   const args = createProfileArgs(mode, profile, inputPath, outputPath, format);
   const accepted = await selectOption('Configuración lista', [
-    { label: 'Iniciar auditoría', description: `${profile} · ${format}`, value: true },
+    { label: 'Iniciar auditoría', description: 'inicia el navegador y guarda el reporte', value: true },
     { label: 'Cancelar', value: false },
-  ]);
+  ], { step: 'Paso 4 de 4', subtitle: 'Revisá la configuración antes de iniciar.', summary: formatConfigurationSummary(args, profile) });
   return accepted ? args : null;
 }
 
 export function createProfileArgs(mode: number, profile: AuditProfile, inputPath: string, outputPath: string, format: string): CliArgs {
-  const profiles: Record<AuditProfile, Pick<CliArgs, 'timeout' | 'delay' | 'concurrency' | 'a11y' | 'seo' | 'checkpointEvery'>> = {
-    quick: { timeout: 15_000, delay: 250, concurrency: 1, a11y: false, seo: true, checkpointEvery: 0 },
-    seo: { timeout: 30_000, delay: 750, concurrency: 1, a11y: false, seo: true, checkpointEvery: 10 },
-    accessibility: { timeout: 30_000, delay: 750, concurrency: 1, a11y: true, seo: false, checkpointEvery: 10 },
-    full: { timeout: 45_000, delay: 1_000, concurrency: 1, a11y: true, seo: true, checkpointEvery: 10 },
+  const profiles: Record<AuditProfile, Pick<CliArgs, 'timeout' | 'delay' | 'concurrency' | 'a11y' | 'seo' | 'checkpointEvery' | 'maxScrolls' | 'maxCarouselClicks'>> = {
+    quick: { timeout: 15_000, delay: 250, concurrency: 1, a11y: false, seo: true, checkpointEvery: 0, maxScrolls: 30, maxCarouselClicks: 6 },
+    seo: { timeout: 30_000, delay: 750, concurrency: 1, a11y: false, seo: true, checkpointEvery: 10, maxScrolls: 60, maxCarouselClicks: 12 },
+    accessibility: { timeout: 30_000, delay: 750, concurrency: 1, a11y: true, seo: false, checkpointEvery: 10, maxScrolls: 20, maxCarouselClicks: 4 },
+    full: { timeout: 45_000, delay: 1_000, concurrency: 1, a11y: true, seo: true, checkpointEvery: 10, maxScrolls: 100, maxCarouselClicks: 25 },
   };
 
   return {
@@ -170,13 +174,28 @@ export function createProfileArgs(mode: number, profile: AuditProfile, inputPath
   };
 }
 
-async function promptText(prompt: string): Promise<string> {
+async function promptText(title: string, prompt: string, screen: TuiScreenOptions): Promise<string> {
   const rl = createInterface({ input, output });
   try {
+    output.write(renderTextPrompt(title, screen));
     return (await rl.question(prompt)).trim();
   } finally {
     rl.close();
   }
+}
+
+export function formatConfigurationSummary(args: CliArgs, profile: AuditProfile): string[] {
+  return [
+    `Modo: ${modeLabel(args.discover ? 2 : args.resume ? 4 : args.a11y && !args.seo ? 3 : 1)}`,
+    `Perfil: ${profileLabel(profile)} · Formato: ${args.format?.toUpperCase()}`,
+    `Entrada: ${args.input}`,
+    `Salida: ${args.output}`,
+    `SEO: ${args.seo ? 'sí' : 'no'} · Accesibilidad: ${args.a11y ? 'sí' : 'no'}`,
+  ];
+}
+
+function profileLabel(profile: AuditProfile): string {
+  return ({ quick: 'Rápido', seo: 'SEO', accessibility: 'Accesibilidad', full: 'Completo' })[profile];
 }
 
 async function choose(rl: ReturnType<typeof createInterface>, prompt: string, choices: MenuChoice[]): Promise<number> {

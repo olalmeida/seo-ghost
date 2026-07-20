@@ -119,6 +119,7 @@ export async function scrapeUrls(
 
       let nextIdx = startIndex;
       let completedCount = startIndex;
+      let lastCheckpointIndex = startIndex;
 
       // Crear N workers, cada uno con su propio context
       const workers = Array.from({ length: concurrency }, async (_, workerId) => {
@@ -144,10 +145,13 @@ export async function scrapeUrls(
             allResults[idx] = result;
             completedCount++;
 
-            // Checkpoint: guardar después de cada URL en modo concurrente
-            if (checkpointPath && checkpointEvery > 0 && completedCount % checkpointEvery === 0) {
-              const cpResults = allResults.filter((r): r is SeoResult => r !== undefined);
-              saveCheckpoint(checkpointPath, urls, cpResults, completedCount);
+            // En concurrencia el orden de finalización no coincide con el de
+            // entrada. Solo persistimos el prefijo contiguo para no reasignar
+            // un resultado a la URL equivocada al reanudar.
+            const checkpointIndex = getContiguousPrefixLength(allResults);
+            if (checkpointPath && checkpointEvery > 0 && checkpointIndex - lastCheckpointIndex >= checkpointEvery) {
+              saveCheckpoint(checkpointPath, urls, allResults.slice(0, checkpointIndex) as SeoResult[], checkpointIndex);
+              lastCheckpointIndex = checkpointIndex;
             }
 
             if (delay > 0) {
@@ -402,11 +406,21 @@ export function loadCheckpoint(path: string): Checkpoint | null {
     if (!Array.isArray(cp.urls) || !Array.isArray(cp.results) || typeof cp.nextIndex !== 'number') {
       return null;
     }
+    if (!Number.isInteger(cp.nextIndex) || cp.nextIndex < 0 || cp.nextIndex > cp.urls.length || cp.results.length < cp.nextIndex) {
+      return null;
+    }
 
     return cp;
   } catch {
     return null;
   }
+}
+
+/** Retorna cuántos resultados consecutivos existen desde el índice cero. */
+export function getContiguousPrefixLength<T>(results: Array<T | undefined>): number {
+  let index = 0;
+  while (index < results.length && results[index] !== undefined) index++;
+  return index;
 }
 
 // ─── Structured Data (JSON-LD) ──────────────────────────────────

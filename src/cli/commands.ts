@@ -35,6 +35,8 @@ export function validateCliArgs(args: CliArgs): string[] {
   if (!isPositive(args.timeout)) errors.push('--timeout debe ser mayor a 0.');
   if (!isNonNegative(args.delay)) errors.push('--delay no puede ser negativo.');
   if (!isPositive(args.concurrency) || (args.concurrency ?? 1) > 8) errors.push('--concurrency debe estar entre 1 y 8.');
+  if (!isPositive(args.maxScrolls ?? 100)) errors.push('--max-scrolls debe ser mayor a 0.');
+  if (!isPositive(args.maxCarouselClicks ?? 25)) errors.push('--max-carousel-clicks debe ser mayor a 0.');
   if (!isPositive(args.maxPages)) errors.push('--max-pages debe ser mayor a 0.');
   if (!isPositive(args.discoverPages)) errors.push('--discover-pages debe ser mayor a 0.');
   if (!isNonNegative(args.checkpointEvery)) errors.push('--checkpoint-every no puede ser negativo.');

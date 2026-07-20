@@ -61,7 +61,7 @@ export class PaginationCollector implements Collector {
 
         // Activar lazy loading
         const imageCollector = new ImageCollector();
-        await imageCollector.activateLazyLoading(page);
+        await imageCollector.activateLazyLoading(page, options);
 
         // Extraer y mergear headings
         await this.mergeHeadings(page, result);
@@ -166,5 +166,6 @@ export class PaginationCollector implements Collector {
         result.imagesWithoutAltList.push(img.src);
       }
     }
+    ImageCollector.applyAltQuality(result);
   }
 }
