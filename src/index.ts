@@ -10,6 +10,7 @@ import { scrapeUrls, loadCheckpoint } from './scraper.js';
 import { discoverUrls } from './discover.js';
 import { toMarkdown, toHtml, toCsv } from './formatter.js';
 import type { CliArgs, OutputFormat, ScrapeSummary, SeoResult } from './types.js';
+import { runInteractiveMenu } from './cli/menu.js';
 
 /**
  * Punto de entrada principal del CLI.
@@ -28,13 +29,18 @@ async function main(): Promise<void> {
       alias: 'i',
       type: 'string',
       description: 'Ruta al archivo de URLs (.txt o .csv)',
-      demandOption: true,
+      demandOption: false,
     })
     .option('output', {
       alias: 'o',
       type: 'string',
       description: 'Ruta al archivo JSON de salida',
       default: 'output/results.json',
+    })
+    .option('menu', {
+      type: 'boolean',
+      description: 'Abrir el asistente interactivo de configuración',
+      default: false,
     })
     .option('timeout', {
       alias: 't',
@@ -62,9 +68,9 @@ async function main(): Promise<void> {
     .option('format', {
       alias: 'f',
       type: 'string',
-      description: 'Formato de salida: json, html, md (Markdown), o both (json + html)',
+      description: 'Formato de salida: json, csv, html, md (Markdown), o both (json + html)',
       default: 'json',
-      choices: ['json', 'md', 'markdown', 'html', 'both'],
+      choices: ['json', 'csv', 'md', 'markdown', 'html', 'both'],
     })
     .option('wait-until', {
       alias: 'w',
@@ -138,7 +144,18 @@ async function main(): Promise<void> {
     })
     .help()
     .alias('help', 'h')
-    .parseSync() as CliArgs;
+    .parseSync() as CliArgs & { menu?: boolean };
+
+  if (argv.menu || (!argv.input && process.stdin.isTTY && process.stdout.isTTY)) {
+    const interactiveArgs = await runInteractiveMenu();
+    if (!interactiveArgs) return;
+    Object.assign(argv, interactiveArgs);
+  }
+
+  if (!argv.input) {
+    console.error('✗ Falta --input. Usá --menu para abrir el asistente interactivo.');
+    process.exit(1);
+  }
 
   const { input, timeout, delay, waitUntil, googlebot, noCacheBuster, format, verbose, maxPages, a11y, seo, resume, concurrency, discover, discoverSelector, discoverPages, discoverRecursive, discoverScrapeAll } = argv;
   const checkpointEvery = argv.checkpointEvery ?? 10;
@@ -340,6 +357,7 @@ async function main(): Promise<void> {
   }
 
   const saveJson = outputFormat === 'json' || outputFormat === 'both';
+  const saveCsv = outputFormat === 'csv';
   const saveMd = outputFormat === 'md';
   const saveHtml = outputFormat === 'html' || outputFormat === 'both';
 
@@ -349,6 +367,12 @@ async function main(): Promise<void> {
       : outputPath;
     writeFileSync(jsonPath, JSON.stringify(summary, null, 2), 'utf-8');
     console.log(`\n✓ JSON guardado: ${jsonPath}`);
+  }
+
+  if (saveCsv) {
+    const csvPath = outputPath.replace(/\.\w+$/, '') + '.csv';
+    writeFileSync(csvPath, toCsv(summary), 'utf-8');
+    console.log(`✓ CSV guardado: ${csvPath}`);
   }
 
   if (saveMd) {

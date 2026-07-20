@@ -245,7 +245,7 @@ export interface ScrapeSummary {
 /**
  * Argumentos del CLI parseados.
  */
-export type OutputFormat = 'json' | 'md' | 'html' | 'both';
+export type OutputFormat = 'json' | 'csv' | 'md' | 'html' | 'both';
 
 export interface CliArgs {
   /** Ruta al archivo de entrada (.txt o .csv) */

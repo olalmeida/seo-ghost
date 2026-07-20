@@ -40,6 +40,22 @@ npx playwright install chromium
 
 ## 🚀 Paso a paso con tu archivo `url-total.txt`
 
+### Modo guiado (recomendado para uso manual)
+
+Si ejecutás la herramienta desde una terminal sin argumentos, se abre un menú
+interactivo. También podés solicitarlo explícitamente:
+
+```bash
+npm run scrape
+# o
+npm run scrape -- --menu
+```
+
+El asistente permite elegir el tipo de auditoría, archivo de URLs, formato de
+salida y opciones avanzadas como timeout, concurrencia, discover y checkpoints.
+Para automatizaciones, CI o scripts se mantienen disponibles todos los flags
+tradicionales.
+
 Asumiendo que tenés un archivo `url-total.txt` en la raíz del proyecto con una URL por línea:
 
 ### 1. Scrapeo básico (JSON)
@@ -190,7 +206,8 @@ npx tsx src/index.ts --input url-total.txt --a11y --seo false --output solo-a11y
 |--------|-------|---------|-------------|
 | `--input` | `-i` | — | Archivo de URLs (`.txt` o `.csv`) |
 | `--output` | `-o` | `output/results.json` | Ruta de salida |
-| `--format` | `-f` | `json` | `json`, `html`, `md`, `both` (json + html) |
+| `--menu` | — | `false` | Abrir el asistente interactivo de configuración |
+| `--format` | `-f` | `json` | `json`, `csv`, `html`, `md`, `both` (json + html) |
 | `--timeout` | `-t` | `30000` | Timeout por URL en ms |
 | `--delay` | `-d` | `1000` | Pausa entre URLs en ms |
 | `--max-pages` | `-p` | `1` | Páginas a recorrer en listados paginados (sin discover) |
