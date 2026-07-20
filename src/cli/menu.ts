@@ -1,6 +1,7 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import type { CliArgs } from '../types.js';
+import { selectOption } from './tui.js';
 
 type MenuChoice = { label: string; value: number };
 
@@ -10,6 +11,11 @@ type MenuChoice = { label: string; value: number };
  * puede recibir la CLI tradicional.
  */
 export async function runInteractiveMenu(): Promise<CliArgs | null> {
+  if (input.isTTY && output.isTTY) return runKeyboardMenu();
+  return runLineMenu();
+}
+
+async function runLineMenu(): Promise<CliArgs | null> {
   const rl = createInterface({ input, output });
 
   try {
@@ -91,6 +97,83 @@ export async function runInteractiveMenu(): Promise<CliArgs | null> {
 
     const accepted = await confirm(rl, '\n¿Comenzar la ejecución?', true);
     return accepted ? args : null;
+  } finally {
+    rl.close();
+  }
+}
+
+type AuditProfile = 'quick' | 'seo' | 'accessibility' | 'full';
+
+async function runKeyboardMenu(): Promise<CliArgs | null> {
+  const mode = await selectOption('¿Qué querés auditar?', [
+    { label: 'Auditoría SEO', description: 'metadata, headings e imágenes', value: 1 },
+    { label: 'Discover + auditoría', description: 'encontrar enlaces y analizarlos', value: 2 },
+    { label: 'Accesibilidad', description: 'auditoría axe-core', value: 3 },
+    { label: 'Reanudar ejecución', description: 'continuar desde checkpoint', value: 4 },
+    { label: 'Salir', value: 0 },
+  ]);
+  if (!mode) return null;
+
+  const profile = await selectOption('Elegí un perfil de auditoría', [
+    { label: 'Rápido', description: 'SEO esencial, menor tiempo', value: 'quick' as AuditProfile },
+    { label: 'SEO', description: 'análisis SEO y reportes completos', value: 'seo' as AuditProfile },
+    { label: 'Accesibilidad', description: 'reglas WCAG con axe-core', value: 'accessibility' as AuditProfile },
+    { label: 'Completo', description: 'SEO + accesibilidad + reportes', value: 'full' as AuditProfile },
+  ]);
+  if (!profile) return null;
+
+  const inputPath = await promptText('Archivo de URLs (.txt o .csv): ');
+  if (!inputPath) return null;
+  const outputPath = await promptText('Archivo base de salida [output/results.json]: ') || 'output/results.json';
+  const format = await selectOption('Formato de salida', [
+    { label: 'JSON', value: 'json' },
+    { label: 'HTML', value: 'html' },
+    { label: 'Markdown', value: 'md' },
+    { label: 'JSON + HTML', value: 'both' },
+    { label: 'CSV', value: 'csv' },
+  ]);
+  if (!format) return null;
+
+  const args = createProfileArgs(mode, profile, inputPath, outputPath, format);
+  const accepted = await selectOption('Configuración lista', [
+    { label: 'Iniciar auditoría', description: `${profile} · ${format}`, value: true },
+    { label: 'Cancelar', value: false },
+  ]);
+  return accepted ? args : null;
+}
+
+export function createProfileArgs(mode: number, profile: AuditProfile, inputPath: string, outputPath: string, format: string): CliArgs {
+  const profiles: Record<AuditProfile, Pick<CliArgs, 'timeout' | 'delay' | 'concurrency' | 'a11y' | 'seo' | 'checkpointEvery'>> = {
+    quick: { timeout: 15_000, delay: 250, concurrency: 1, a11y: false, seo: true, checkpointEvery: 0 },
+    seo: { timeout: 30_000, delay: 750, concurrency: 1, a11y: false, seo: true, checkpointEvery: 10 },
+    accessibility: { timeout: 30_000, delay: 750, concurrency: 1, a11y: true, seo: false, checkpointEvery: 10 },
+    full: { timeout: 45_000, delay: 1_000, concurrency: 1, a11y: true, seo: true, checkpointEvery: 10 },
+  };
+
+  return {
+    input: inputPath,
+    output: outputPath,
+    format,
+    waitUntil: 'domcontentloaded',
+    googlebot: false,
+    noCacheBuster: false,
+    maxPages: 1,
+    resume: mode === 4,
+    discover: mode === 2,
+    discoverSelector: 'a[href$=".html"]',
+    discoverPages: 1,
+    discoverRecursive: false,
+    discoverScrapeAll: false,
+    verbose: false,
+    ...profiles[profile],
+    ...(mode === 3 ? { a11y: true, seo: false } : {}),
+  };
+}
+
+async function promptText(prompt: string): Promise<string> {
+  const rl = createInterface({ input, output });
+  try {
+    return (await rl.question(prompt)).trim();
   } finally {
     rl.close();
   }

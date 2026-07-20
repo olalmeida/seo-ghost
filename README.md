@@ -42,6 +42,11 @@ npx playwright install chromium
 
 ### CLI de SEO Ghost
 
+![Interfaz TUI de SEO Ghost](assets/seo-ghost-tui.png)
+
+La imagen es una ilustración de la experiencia visual. La TUI real se ejecuta
+en la terminal y no requiere navegador ni dependencias adicionales.
+
 SEO Ghost tiene comandos orientados a tareas. El menú guiado sigue disponible
 para quien lo prefiera, pero ya no es la interfaz principal:
 
@@ -57,6 +62,27 @@ npm run cli -- resume --input url-total.txt --output output/results.json
 También podés instalarlo globalmente mediante `npm link` y ejecutar
 `seo-ghost <comando>`. Para una experiencia guiada: `seo-ghost --menu`.
 Los flags heredados continúan funcionando para scripts y CI.
+
+### TUI navegable por teclado
+
+Al abrir `seo-ghost --menu` desde una terminal interactiva, la herramienta
+presenta una interfaz visual con perfiles de auditoría. No hace falta recordar
+flags para el uso manual.
+
+| Tecla | Acción |
+|-------|--------|
+| `↑` / `↓` o `j` / `k` | Mover la selección |
+| `Enter` | Confirmar una opción |
+| `Esc` | Cancelar o volver a la terminal |
+
+Perfiles disponibles:
+
+| Perfil | Uso recomendado |
+|--------|-----------------|
+| `Rápido` | Revisión SEO esencial con menor tiempo de ejecución |
+| `SEO` | Metadata, headings, imágenes y reportes completos |
+| `Accesibilidad` | Auditoría WCAG con axe-core |
+| `Completo` | SEO y accesibilidad en una sola ejecución |
 
 Asumiendo que tenés un archivo `url-total.txt` en la raíz del proyecto con una URL por línea:
 
