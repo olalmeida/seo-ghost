@@ -22,7 +22,7 @@ export function toMarkdown(summary: ScrapeSummary): string {
   // ─── Tabla resumen ─────────────────────────────────────────────
   lines.push('## 📊 Resumen General');
   lines.push('');
-  lines.push('| # | URL | Status | Title | H1 | H2 | H3 | Palabras | Párrafos | Issues | Img w/o alt |');
+  lines.push('| # | URL | Status | Title | H1 | H2 | H3 | Palabras | Párrafos | Issues | Errores ALT |');
   lines.push('|---|-----|--------|-------|----|----|----|----------|----------|--------|-------------|');
 
   summary.results.forEach((r, i) => {
@@ -172,7 +172,8 @@ export function toMarkdown(summary: ScrapeSummary): string {
       if (imgCounts.empty > 0) lines.push(`| **Empty (vacío)** | ${imgCounts.empty} ⚪ |`);
       if ((imgCounts.bare ?? 0) > 0) lines.push(`| **Bare (alt sin valor)** | ${imgCounts.bare} 🟠 |`);
       if (imgCounts.missing > 0) lines.push(`| **Missing (sin alt)** | ${imgCounts.missing} 🔴 |`);
-      lines.push(`| **Total problemáticas** | ${r.imagesWithoutAlt} ⚠️ |`);
+      lines.push(`| **Errores ALT (missing/bare)** | ${r.imagesWithoutAlt} 🔴 |`);
+      lines.push(`| **Revisión de calidad (generic)** | ${imgCounts.generic} 🟡 |`);
       lines.push('');
 
       // Listas agrupadas por categoría
@@ -201,7 +202,7 @@ export function toMarkdown(summary: ScrapeSummary): string {
       lines.push(`| Métrica | Valor |`);
       lines.push(`|---------|-------|`);
       lines.push(`| **Total imágenes** | ${r.totalImages} |`);
-      lines.push(`| **Sin alt text** | ${r.imagesWithoutAlt} ⚠️ |`);
+      lines.push(`| **Errores ALT (missing/bare)** | ${r.imagesWithoutAlt} 🔴 |`);
       lines.push('');
 
       if (r.imagesWithoutAltList && r.imagesWithoutAltList.length > 0) {
@@ -428,7 +429,7 @@ export function toHtml(summary: ScrapeSummary): string {
     <div class="card"><div class="num text-green">${successCount}</div><div class="label">Exitosas</div></div>
     <div class="card"><div class="num ${summary.totalErrors > 0 ? 'text-red' : 'text-green'}">${summary.totalErrors}</div><div class="label">Con errores</div></div>
     <div class="card"><div class="num text-blue">${metrics.totalImages}</div><div class="label">Imágenes totales</div></div>
-    <div class="card"><div class="num ${metrics.totalImgProblems > 0 ? 'text-yellow' : 'text-green'}">${metrics.totalImgProblems}</div><div class="label">Img sin alt</div></div>
+    <div class="card"><div class="num ${metrics.totalImgProblems > 0 ? 'text-red' : 'text-green'}">${metrics.totalImgProblems}</div><div class="label">Errores ALT</div></div>
     <div class="card"><div class="num ${metrics.totalIssues > 0 ? 'text-yellow' : 'text-green'}">${metrics.totalIssues}</div><div class="label">Issues headings</div></div>
     <div class="card"><div class="num ${metrics.totalAxeViolations > 0 ? 'text-red' : 'text-green'}">${metrics.totalAxeViolations}</div><div class="label">Violaciones a11y</div></div>
     <div class="card"><div class="num text-blue">${metrics.totalBgImages}</div><div class="label">Background CSS</div></div>
@@ -480,8 +481,8 @@ export function toHtml(summary: ScrapeSummary): string {
     // Determinar categorías para filtros
     const statusCat = r2.error ? 'error' : r2.statusCode === 200 ? 'ok' : 'warning';
     const hasGeneric = r2.images?.some((img) => img.category === 'generic') ?? false;
-    const hasMissingEmpty = r2.images?.some((img) => img.category === 'missing' || img.category === 'empty') ?? false;
-    const imgCat = r2.imagesWithoutAlt === 0 ? 'ok' : hasMissingEmpty ? 'problem' : 'warning';
+    const hasCriticalAltIssue = r2.images?.some((img) => img.category === 'missing' || img.category === 'bare') ?? false;
+    const imgCat = hasCriticalAltIssue ? 'problem' : hasGeneric ? 'warning' : 'ok';
 
     // Parse URL para mostrar dominio + path
     let urlDomain = '';
@@ -511,7 +512,7 @@ export function toHtml(summary: ScrapeSummary): string {
         ? `<span class="badge badge-green">0</span>`
         : `<span style="color:var(--text-muted)">—</span>`;
     const imgBadge = r2.imagesWithoutAlt > 0
-      ? `<span class="badge badge-yellow">${r2.imagesWithoutAlt}/${r2.totalImages}</span>`
+      ? `<span class="badge badge-red">${r2.imagesWithoutAlt}/${r2.totalImages}</span>`
       : `<span class="badge badge-green">0/${r2.totalImages}</span>`;
 
     r.push(`
@@ -662,8 +663,8 @@ export function toHtml(summary: ScrapeSummary): string {
         <div class="section-title">Imágenes</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.75rem">
           <span class="badge badge-green">✅ Descriptive: ${imgCounts.descriptive}</span>
-          ${imgCounts.generic > 0 ? `<span class="badge badge-yellow">🟡 Generic: ${imgCounts.generic}</span>` : ''}
-          ${imgCounts.empty > 0 ? `<span class="badge badge-yellow">⚪ Empty: ${imgCounts.empty}</span>` : ''}
+          ${imgCounts.generic > 0 ? `<span class="badge badge-yellow">🟡 Revisión: ${imgCounts.generic}</span>` : ''}
+          ${imgCounts.empty > 0 ? `<span class="badge badge-blue">⚪ Decorativas: ${imgCounts.empty}</span>` : ''}
           ${(imgCounts.bare ?? 0) > 0 ? `<span class="badge badge-orange">🟠 Bare: ${imgCounts.bare}</span>` : ''}
           ${imgCounts.missing > 0 ? `<span class="badge badge-red">🔴 Missing: ${imgCounts.missing}</span>` : ''}
         </div>`);
@@ -682,9 +683,9 @@ export function toHtml(summary: ScrapeSummary): string {
       };
 
       r.push(renderGroup('missing', '🔴 Sin atributo alt'));
-      r.push(renderGroup('empty', '⚪ Alt vacío'));
+      r.push(renderGroup('empty', '⚪ Decorativas (alt vacío válido)'));
       r.push(renderGroup('bare', '🟠 Alt sin valor (<img alt>)'));
-      r.push(renderGroup('generic', '🟡 Alt genérico/plano'));
+      r.push(renderGroup('generic', '🟡 ALT genérico — requiere revisión'));
       r.push(`</div>`);
     }
 
@@ -877,7 +878,7 @@ export function toCsv(summary: ScrapeSummary): string {
     'Images Empty',
     'Images Bare',
     'Images Missing',
-    'Images Without Alt',
+    'ALT Errors (Missing/Bare)',
   ];
 
   if (hasA11y) {

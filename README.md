@@ -40,21 +40,23 @@ npx playwright install chromium
 
 ## 🚀 Paso a paso con tu archivo `url-total.txt`
 
-### Modo guiado (recomendado para uso manual)
+### CLI de SEO Ghost
 
-Si ejecutás la herramienta desde una terminal sin argumentos, se abre un menú
-interactivo. También podés solicitarlo explícitamente:
+SEO Ghost tiene comandos orientados a tareas. El menú guiado sigue disponible
+para quien lo prefiera, pero ya no es la interfaz principal:
 
 ```bash
-npm run scrape
-# o
-npm run scrape -- --menu
+npm run build
+npm run cli -- audit --input url-total.txt --format both
+npm run cli -- audit --url https://example.com --format html
+npm run cli -- discover --input secciones.txt --discover-pages 3
+npm run cli -- a11y --input url-total.txt --format csv
+npm run cli -- resume --input url-total.txt --output output/results.json
 ```
 
-El asistente permite elegir el tipo de auditoría, archivo de URLs, formato de
-salida y opciones avanzadas como timeout, concurrencia, discover y checkpoints.
-Para automatizaciones, CI o scripts se mantienen disponibles todos los flags
-tradicionales.
+También podés instalarlo globalmente mediante `npm link` y ejecutar
+`seo-ghost <comando>`. Para una experiencia guiada: `seo-ghost --menu`.
+Los flags heredados continúan funcionando para scripts y CI.
 
 Asumiendo que tenés un archivo `url-total.txt` en la raíz del proyecto con una URL por línea:
 

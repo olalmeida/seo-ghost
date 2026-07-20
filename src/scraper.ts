@@ -743,7 +743,7 @@ function buildResultLine(
     if (result.ogImage) tags.push('OG-img: ✅');
     if (result.twitterCard) tags.push('🐦 ✅');
     if (result.imagesWithoutAlt > 0) {
-      tags.push(`🖼️  sin alt: ${result.imagesWithoutAlt}/${result.totalImages}`);
+      tags.push(`🖼️  errores ALT: ${result.imagesWithoutAlt}/${result.totalImages}`);
     }
     if (result.wordCount > 0) tags.push(`📝 ${result.wordCount} palabras`);
     if (result.paragraphCount > 0) tags.push(`¶ ${result.paragraphCount} párrafos`);

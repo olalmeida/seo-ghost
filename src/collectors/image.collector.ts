@@ -1,7 +1,7 @@
 import type { Page } from 'playwright';
 import type { ImageAnalysis, BgImageAnalysis, PictureSourceAnalysis, SeoResult, ScrapeOptions } from '../types.js';
 import type { Collector } from './types.js';
-import { classifyAlt } from './helpers.js';
+import { classifyAlt, isAltIssue } from './helpers.js';
 
 /**
  * ImageCollector: extrae y analiza las imágenes de la página.
@@ -191,22 +191,31 @@ export class ImageCollector implements Collector {
    * (atributo sin valor). El DOM normaliza `<img alt>` a `<img alt="">`,
    * así que necesitamos el HTML crudo de la respuesta HTTP.
    */
-  private findBareSrcs(rawHtml: string): Set<string> {
-    const bareSrcs = new Set<string>();
-    // Buscar TODOS los <img> en el HTML original
-    const imgRegex = /<img[^>]*?src\s*=\s*["']([^"']*)["'][^>]*>/gi;
+  private findBareSources(rawHtml: string, baseUrl: string): Set<string> {
+    const bareSources = new Set<string>();
+    const imgRegex = /<img\b[^>]*>/gi;
     let match: RegExpExecArray | null;
+
     while ((match = imgRegex.exec(rawHtml)) !== null) {
-      const imgTag = match[0];
-      const srcAttr = match[1]; // src value tal cual en el HTML original
-      // Bare si: tiene 'alt' como palabra PERO no va seguido de =
-      // Busca " alt " o " alt>" sin el =
-      if (/\salt\b/i.test(imgTag) && !/\salt\s*=\s*["']/i.test(imgTag)) {
-        // Guardar el src relativo/absoluto tal como aparece
-        bareSrcs.add(decodeURI(srcAttr));
+      const tag = match[0];
+      const hasBareAlt = /(?:^|\s)alt(?:\s|\/?>)/i.test(tag) && !/(?:^|\s)alt\s*=/i.test(tag);
+      if (!hasBareAlt) continue;
+
+      const attrRegex = /\b(?:src|data-src|data-lazy-src|srcset|data-srcset)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi;
+      let attr: RegExpExecArray | null;
+      while ((attr = attrRegex.exec(tag)) !== null) {
+        const value = attr[1] ?? attr[2] ?? attr[3] ?? '';
+        for (const candidate of value.split(',').map((item) => item.trim().split(/\s+/)[0]).filter(Boolean)) {
+          try {
+            bareSources.add(new URL(candidate, baseUrl).href);
+          } catch {
+            // Un valor inválido no impide clasificar el resto de imágenes.
+          }
+        }
       }
     }
-    return bareSrcs;
+
+    return bareSources;
   }
 
   private async extractImages(page: Page, result: SeoResult, rawHtml?: string): Promise<void> {
@@ -214,11 +223,11 @@ export class ImageCollector implements Collector {
       src: string;
       alt: string;
       hasAlt: boolean;
-      hasAltValue: boolean;
+      currentSrc: string;
     }
 
     // Si tenemos raw HTML, detectar srcs con bare alt
-    const bareSrcs = rawHtml ? this.findBareSrcs(rawHtml) : new Set();
+    const bareSources = rawHtml ? this.findBareSources(rawHtml, page.url()) : new Set<string>();
 
     // Extraer <img> tags
     const images = await page
@@ -229,7 +238,8 @@ export class ImageCollector implements Collector {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const alt = (el as any).alt ?? '';
           const hasAlt = el.hasAttribute('alt');
-          return { src, alt, hasAlt };
+          const currentSrc = (el as { currentSrc?: string }).currentSrc ?? src;
+          return { src, alt, hasAlt, currentSrc };
         })
       )
       .catch(() => [] as RawImage[]);
@@ -247,7 +257,7 @@ export class ImageCollector implements Collector {
             src: poster,
             alt: altText,
             hasAlt: altText.length > 0,
-            hasAltValue: altText.length > 0,
+            currentSrc: poster,
           };
         })
       )
@@ -267,7 +277,7 @@ export class ImageCollector implements Collector {
               src,
               alt: title,
               hasAlt: title.length > 0,
-              hasAltValue: title.length > 0,
+              currentSrc: src,
             };
           }),
       )
@@ -279,19 +289,7 @@ export class ImageCollector implements Collector {
 
     // Clasificar cada imagen
     const analyzed: ImageAnalysis[] = allImages.map((img) => {
-      // Determinar si el alt es bare (<img alt> sin valor):
-      // chequeamos si el filename del src de esta imagen coincide
-      // con alguno de los srcs que en el raw HTML tenían bare alt
-      const imgFilename = img.src.split('/').pop()?.split('?')[0] ?? '';
-      let isBare = false;
-      if (bareSrcs.size > 0) {
-        bareSrcs.forEach((bareSrc: unknown) => {
-          if (isBare) return;
-          const bs = bareSrc as string;
-          const bareFilename = bs.split('/').pop()?.split('?')[0] ?? '';
-          if (bareFilename && imgFilename === bareFilename) isBare = true;
-        });
-      }
+      const isBare = bareSources.has(img.src) || bareSources.has(img.currentSrc);
 
       return {
         src: img.src,
@@ -301,10 +299,7 @@ export class ImageCollector implements Collector {
     });
     result.images = analyzed;
 
-    // Mantener backward compat: imágenes no-descriptive cuentan como "without alt"
-    const problematic = analyzed.filter(
-      (img) => img.category !== 'descriptive'
-    );
+    const problematic = analyzed.filter((img) => isAltIssue(img.category));
     result.imagesWithoutAlt = problematic.length;
     result.imagesWithoutAltList = problematic
       .map((img) => img.src)
@@ -466,7 +461,7 @@ export class ImageCollector implements Collector {
    * Extrae imágenes sin mantener estado interno (para merge de paginación).
    * Retorna los datos crudos para que el caller decida cómo mergearlos.
    */
-  async extractRaw(page: Page): Promise<{
+  async extractRaw(page: Page, rawHtml?: string): Promise<{
     totalImages: number;
     imagesWithoutAlt: number;
     imagesWithoutAltList: string[];
@@ -476,6 +471,7 @@ export class ImageCollector implements Collector {
       src: string;
       alt: string;
       hasAlt: boolean;
+      currentSrc: string;
     }
 
     const imgs = await page
@@ -486,7 +482,8 @@ export class ImageCollector implements Collector {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const alt = (el as any).alt ?? '';
           const hasAlt = el.hasAttribute('alt');
-          return { src, alt, hasAlt };
+          const currentSrc = (el as { currentSrc?: string }).currentSrc ?? src;
+          return { src, alt, hasAlt, currentSrc };
         })
       )
       .catch(() => [] as RawImage[]);
@@ -502,6 +499,7 @@ export class ImageCollector implements Collector {
             src: poster,
             alt: altText,
             hasAlt: altText.length > 0,
+            currentSrc: poster,
           };
         })
       )
@@ -519,23 +517,21 @@ export class ImageCollector implements Collector {
               src,
               alt: title,
               hasAlt: title.length > 0,
+              currentSrc: src,
             };
           }),
       )
       .catch(() => [] as RawImage[]);
 
     const allImages = [...imgs, ...videoPosters, ...videoIframes];
-    // Nota: extractRaw no tiene acceso al rawHtml, así que no puede
-    // detectar bare. Las imágenes se clasifican como empty en ese caso.
+    const bareSources = rawHtml ? this.findBareSources(rawHtml, page.url()) : new Set<string>();
     const analyzed: ImageAnalysis[] = allImages.map((img) => ({
       src: img.src,
       alt: img.alt,
-      category: classifyAlt(img.alt, img.hasAlt, true), // sin detección bare
+      category: classifyAlt(img.alt, img.hasAlt, !(bareSources.has(img.src) || bareSources.has(img.currentSrc))),
     }));
 
-    const problematic = analyzed.filter(
-      (img) => img.category !== 'descriptive'
-    );
+    const problematic = analyzed.filter((img) => isAltIssue(img.category));
 
     return {
       totalImages: allImages.length,

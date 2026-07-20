@@ -92,9 +92,9 @@ export interface SeoResult {
   // ─── Imágenes ──────────────────────────────────────────────────
   /** Total de etiquetas <img> en el DOM */
   totalImages: number;
-  /** Imágenes sin alt o con alt="" */
+  /** Imágenes con error real de ALT: sin atributo o atributo sin valor. */
   imagesWithoutAlt: number;
-  /** Lista de URLs (src) de imágenes que no tienen alt */
+  /** Lista de URLs (src) de imágenes con error real de ALT. */
   imagesWithoutAltList: string[];
   /** Análisis completo de todas las imágenes con categorización */
   images: ImageAnalysis[];
@@ -250,6 +250,8 @@ export type OutputFormat = 'json' | 'csv' | 'md' | 'html' | 'both';
 export interface CliArgs {
   /** Ruta al archivo de entrada (.txt o .csv) */
   input: string;
+  /** URLs recibidas directamente desde la CLI, sin archivo de entrada. */
+  urls?: string[];
   /** Ruta al archivo de salida JSON (opcional) */
   output?: string;
   /** Timeout por URL en ms */

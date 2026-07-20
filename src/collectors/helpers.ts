@@ -64,6 +64,8 @@ export function validateHeadings(result: Pick<SeoResult, 'h1Tags' | 'h1Count' | 
 export const GENERIC_ALT_PATTERNS = [
   /\.(jpg|jpeg|png|gif|webp|svg|bmp)$/i,
   /^(foto|fotografía|fotografia|imagen|image|photo|picture|img|thumb|thumbnail|miniatura|slide|banner)$/i,
+  /^(img|image|foto|photo|dsc|scan|screenshot)[\s_-]*\d+[\w-]*$/i,
+  /^(untitled|sin título|sin titulo|default|placeholder)$/i,
 ];
 
 /**
@@ -115,6 +117,20 @@ export function classifyAlt(alt: string, hasAttribute: boolean, hasValue = true)
 export function hasMeaningfulAlt(alt: string): boolean {
   const cleaned = alt.replace(/[\s\u200B-\u200D\uFEFF\u00A0\x00-\x1F\x7F]+/g, '').trim();
   return cleaned.length > 0;
+}
+
+/**
+ * Un error de ALT es ausencia real de texto alternativo en un elemento que
+ * debería declararlo. `alt=""` es válido para contenido decorativo y los
+ * textos genéricos se reportan por separado como calidad a revisar.
+ */
+export function isAltIssue(category: AltCategory): boolean {
+  return category === 'missing' || category === 'bare';
+}
+
+/** Un ALT genérico existe, pero no aporta una descripción útil. */
+export function needsAltReview(category: AltCategory): boolean {
+  return category === 'generic';
 }
 
 // ─── URL pattern detection ─────────────────────────────────────────

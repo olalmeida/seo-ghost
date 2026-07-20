@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "SEO metadata scraper con evasión de WAF/Cloudflare usando Playwright",
   "type": "module",
+  "bin": {
+    "seo-ghost": "dist/index.js"
+  },
   "scripts": {
     "scrape": "tsx src/index.ts",
+    "cli": "node dist/index.js",
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest run",

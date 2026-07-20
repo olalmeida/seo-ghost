@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { validateHeadings, hasMeaningfulAlt, classifyAlt, detectUrlPattern } from './helpers.js';
+import { validateHeadings, hasMeaningfulAlt, classifyAlt, detectUrlPattern, isAltIssue, needsAltReview } from './helpers.js';
 
 // ─── validateHeadings ──────────────────────────────────────────────
 
@@ -179,6 +179,8 @@ describe('classifyAlt', () => {
     expect(classifyAlt('banner', true)).toBe('generic');
     expect(classifyAlt('FOTO', true)).toBe('generic'); // case insensitive
     expect(classifyAlt('Foto', true)).toBe('generic');
+    expect(classifyAlt('IMG_0042', true)).toBe('generic');
+    expect(classifyAlt('DSC-2026', true)).toBe('generic');
   });
 
   it('alt descriptivo → descriptive', () => {
@@ -213,6 +215,22 @@ describe('classifyAlt', () => {
   it('alt sin atributo → missing (NO bare)', () => {
     expect(classifyAlt('', false, false)).toBe('missing');
     expect(classifyAlt('', false, true)).toBe('missing');
+  });
+});
+
+describe('severidad de categorías ALT', () => {
+  it('solo missing y bare son errores de ALT', () => {
+    expect(isAltIssue('missing')).toBe(true);
+    expect(isAltIssue('bare')).toBe(true);
+    expect(isAltIssue('empty')).toBe(false);
+    expect(isAltIssue('generic')).toBe(false);
+    expect(isAltIssue('descriptive')).toBe(false);
+  });
+
+  it('un ALT genérico se marca para revisión, no como ausencia', () => {
+    expect(needsAltReview('generic')).toBe(true);
+    expect(needsAltReview('missing')).toBe(false);
+    expect(needsAltReview('empty')).toBe(false);
   });
 });
 

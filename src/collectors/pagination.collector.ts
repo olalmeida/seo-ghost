@@ -2,7 +2,7 @@ import type { Page } from 'playwright';
 import type { SeoResult, ScrapeOptions } from '../types.js';
 import type { Collector } from './types.js';
 import { ImageCollector } from './image.collector.js';
-import { detectUrlPattern, hasMeaningfulAlt } from './helpers.js';
+import { detectUrlPattern, isAltIssue } from './helpers.js';
 
 /**
  * PaginationCollector: navega páginas adicionales en listados paginados
@@ -40,9 +40,6 @@ export class PaginationCollector implements Collector {
 
     console.log(`  📄 Patrón detectado: ${urlPattern.replace('{n}', 'N')}`);
 
-    // Set para evitar duplicar imágenes
-    const seenImageUrls = new Set(result.imagesWithoutAltList);
-
     for (let p = 2; p <= maxPages; p++) {
       const pageUrl = urlPattern.replace('{n}', String(p));
       console.log(`  📄 Yendo a página ${p}: ${pageUrl}`);
@@ -69,10 +66,12 @@ export class PaginationCollector implements Collector {
         // Extraer y mergear headings
         await this.mergeHeadings(page, result);
 
-        // Extraer y mergear imágenes
-        await this.mergeImages(page, result, seenImageUrls);
+        // Extraer y mergear imágenes conservando las mismas categorías que
+        // usa la primera página, incluido <img alt> cuando el HTML lo permite.
+        const rawHtml = await response?.text().catch(() => undefined);
+        await this.mergeImages(page, result, rawHtml);
 
-        console.log(`  ✓ Página ${p} mergeada | H1: ${result.h1Count} | H2: ${result.h2Count} | H3: ${result.h3Count} | Img sin alt: ${result.imagesWithoutAlt}/${result.totalImages}`);
+        console.log(`  ✓ Página ${p} mergeada | H1: ${result.h1Count} | H2: ${result.h2Count} | H3: ${result.h3Count} | Errores ALT: ${result.imagesWithoutAlt}/${result.totalImages}`);
       } catch {
         console.log(`  ⚠️  Error al navegar a página ${p}, deteniendo paginación`);
         break;
@@ -154,29 +153,17 @@ export class PaginationCollector implements Collector {
   private async mergeImages(
     page: Page,
     result: SeoResult,
-    seenImageUrls: Set<string>
+    rawHtml?: string,
   ): Promise<void> {
-    const images = await page
-      .$$eval('img', (els) =>
-        els.map((el) => ({
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          src: (el as any).src ?? '',
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          alt: (el as any).alt ?? '',
-        }))
-      )
-      .catch(() => [] as Array<{ src: string; alt: string }>);
-
-    for (const img of images) {
+    const extracted = await new ImageCollector().extractRaw(page, rawHtml);
+    for (const img of extracted.images) {
       if (!img.src) continue;
       result.totalImages++;
+      result.images.push(img);
 
-      if (!hasMeaningfulAlt(img.alt)) {
-        if (!seenImageUrls.has(img.src)) {
-          seenImageUrls.add(img.src);
-          result.imagesWithoutAlt++;
-          result.imagesWithoutAltList.push(img.src);
-        }
+      if (isAltIssue(img.category)) {
+        result.imagesWithoutAlt++;
+        result.imagesWithoutAltList.push(img.src);
       }
     }
   }

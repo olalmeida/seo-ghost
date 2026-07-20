@@ -11,6 +11,7 @@ import { discoverUrls } from './discover.js';
 import { toMarkdown, toHtml, toCsv } from './formatter.js';
 import type { CliArgs, OutputFormat, ScrapeSummary, SeoResult } from './types.js';
 import { runInteractiveMenu } from './cli/menu.js';
+import { normalizeCommandArgs, printHelp, validateCliArgs } from './cli/commands.js';
 
 /**
  * Punto de entrada principal del CLI.
@@ -21,8 +22,14 @@ import { runInteractiveMenu } from './cli/menu.js';
  *   npx tsx src/index.ts --input urls.txt --verbose
  */
 async function main(): Promise<void> {
+  const normalized = normalizeCommandArgs(hideBin(process.argv));
+  if (normalized.showHelp) {
+    printHelp();
+    return;
+  }
+
   // ─── Parsear argumentos ─────────────────────────────────────────
-  const argv = await yargs(hideBin(process.argv))
+  const argv = await yargs(normalized.args)
     .scriptName('seo-ghost')
     .usage('$0 --input <archivo> [opciones]')
     .option('input', {
@@ -30,6 +37,12 @@ async function main(): Promise<void> {
       type: 'string',
       description: 'Ruta al archivo de URLs (.txt o .csv)',
       demandOption: false,
+    })
+    .option('url', {
+      alias: 'u',
+      type: 'array',
+      string: true,
+      description: 'URL individual; se puede repetir sin crear un archivo',
     })
     .option('output', {
       alias: 'o',
@@ -144,16 +157,19 @@ async function main(): Promise<void> {
     })
     .help()
     .alias('help', 'h')
-    .parseSync() as CliArgs & { menu?: boolean };
+    .parseSync() as CliArgs & { menu?: boolean; url?: string[] };
 
-  if (argv.menu || (!argv.input && process.stdin.isTTY && process.stdout.isTTY)) {
+  if ((normalized.openMenu || argv.menu) && process.stdin.isTTY && process.stdout.isTTY) {
     const interactiveArgs = await runInteractiveMenu();
     if (!interactiveArgs) return;
     Object.assign(argv, interactiveArgs);
   }
 
-  if (!argv.input) {
-    console.error('✗ Falta --input. Usá --menu para abrir el asistente interactivo.');
+  argv.urls = Array.isArray(argv.url) ? argv.url.filter((value): value is string => typeof value === 'string') : [];
+  const validationErrors = validateCliArgs(argv);
+  if (validationErrors.length > 0) {
+    console.error(`✗ Configuración inválida:\n  - ${validationErrors.join('\n  - ')}`);
+    console.error('Usá "seo-ghost --help" para ver ejemplos o "seo-ghost --menu" para el modo guiado.');
     process.exit(1);
   }
 
@@ -175,7 +191,7 @@ async function main(): Promise<void> {
     if (!cp || cp.nextIndex >= cp.urls.length) {
       console.log('\n👻 No hay checkpoint pendiente. Iniciando desde cero.\n');
       // Leer URLs normalmente
-      urls = readUrlsFromFile(input);
+      urls = readUrlsFromSources(input, argv.urls);
     } else {
       console.log(`\n👻 seo-ghost - Reanudando desde checkpoint (${cp.nextIndex}/${cp.urls.length})\n`);
       urls = cp.urls;
@@ -183,7 +199,7 @@ async function main(): Promise<void> {
       startIndex = cp.nextIndex;
     }
   } else {
-    urls = readUrlsFromFile(input);
+    urls = readUrlsFromSources(input, argv.urls);
   }
 
   if (urls.length === 0) {
@@ -207,7 +223,7 @@ async function main(): Promise<void> {
   const conc = concurrency ?? 1;
   console.log(`💾 Checkpoint:  ${checkpointEvery > 0 ? `Cada ${checkpointEvery} URLs → ${checkpointPath}` : 'No'}`);
   console.log(`⚡ Concurrencia: ${conc > 1 ? `${conc} workers` : 'No (secuencial)'}`);
-  const formatLabel = format === 'both' ? 'JSON + HTML' : format === 'html' ? 'HTML' : format === 'md' || format === 'markdown' ? 'Markdown' : 'JSON';
+  const formatLabel = format === 'both' ? 'JSON + HTML' : format === 'html' ? 'HTML' : format === 'csv' ? 'CSV' : format === 'md' || format === 'markdown' ? 'Markdown' : 'JSON';
   console.log(`📋 Formato:     ${formatLabel}`);
   console.log('');
 
@@ -485,4 +501,11 @@ function readUrlsFromFile(input: string): string[] {
   }
 
   return urls;
+}
+
+function readUrlsFromSources(input: string | undefined, directUrls: string[] | undefined): string[] {
+  if (directUrls && directUrls.length > 0) return directUrls;
+  if (input) return readUrlsFromFile(input);
+  console.error('✗ Indicá --input <archivo> o al menos una --url <URL>.');
+  process.exit(1);
 }
